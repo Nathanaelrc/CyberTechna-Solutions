@@ -8,7 +8,7 @@ Sitio corporativo desarrollado con Laravel 13, Bootstrap 5 y Docker para ofrecer
 - Login reservado al propietario y dashboard privado.
 - CRUD de publicaciones para compartir novedades, articulos o casos.
 - Bandeja de mensajes recibidos desde el formulario de contacto.
-- Docker Compose con Apache, PHP 8.3 y MySQL 8.4.
+- Docker Compose con Nginx, PHP 8.3-FPM y MySQL 8.4.
 
 ## Arranque rapido
 
@@ -18,9 +18,9 @@ Sitio corporativo desarrollado con Laravel 13, Bootstrap 5 y Docker para ofrecer
 	docker compose up --build
 	```
 
-2. Abre el sitio en http://localhost:8080
+2. Abre el sitio en http://localhost:9090
 
-3. Accede al panel privado en http://localhost:8080/login
+3. Accede al panel privado en http://localhost:9090/login
 
 ## Credenciales iniciales del propietario
 
@@ -52,7 +52,8 @@ docker compose exec app php artisan test
 - `app/Http/Controllers`: controladores para home, auth, mensajes y administracion.
 - `resources/views/pages`: landing y detalle de publicaciones.
 - `resources/views/admin`: dashboard, publicaciones y mensajes.
-- `docker/apache`: runtime Apache/PHP y entrypoint del contenedor.
+- `docker/php`: runtime PHP-FPM y entrypoint del contenedor.
+- `docker/nginx`: configuracion del servidor web y del puerto publico.
 
 ## Notas de despliegue
 
