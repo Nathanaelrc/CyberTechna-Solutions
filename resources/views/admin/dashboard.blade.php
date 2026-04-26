@@ -1,56 +1,56 @@
 @extends('layouts.admin')
 
-@section('title', 'Dashboard | CyberTechna Solutions')
+@section('title', __('Dashboard').' | CyberTechna Solutions')
 
 @section('content')
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
         <div>
-            <div class="text-uppercase muted small fw-bold mb-2">Resumen operativo</div>
-            <h1 class="display-6 text-white mb-2">Panel del propietario</h1>
-            <p class="muted mb-0">Controla servicios, cursos, publicaciones y contactos desde un unico lugar.</p>
+            <div class="text-uppercase muted small fw-bold mb-2">{{ __('Resumen operativo') }}</div>
+            <h1 class="display-6 text-white mb-2">{{ __('Panel del propietario') }}</h1>
+            <p class="muted mb-0">{{ __('Controla servicios, cursos, publicaciones y contactos desde un unico lugar.') }}</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
-            <a href="{{ route('admin.services.create') }}" class="btn btn-admin">Nuevo servicio</a>
-            <a href="{{ route('admin.courses.create') }}" class="btn btn-signal-soft">Nuevo curso</a>
-            <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">Nueva publicacion</a>
-            <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-light rounded-pill px-4">Ver mensajes</a>
+            <a href="{{ route('admin.services.create') }}" class="btn btn-admin">{{ __('Nuevo servicio') }}</a>
+            <a href="{{ route('admin.courses.create') }}" class="btn btn-signal-soft">{{ __('Nuevo curso') }}</a>
+            <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">{{ __('Nueva publicacion') }}</a>
+            <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-light rounded-pill px-4">{{ __('Ver mensajes') }}</a>
         </div>
     </div>
 
     <div class="row g-4 mb-4">
         <div class="col-md-6 col-xl-2">
             <div class="admin-stat">
-                <span class="muted">Publicadas</span>
+                <span class="muted">{{ __('Publicadas') }}</span>
                 <strong>{{ $stats['published'] }}</strong>
             </div>
         </div>
         <div class="col-md-6 col-xl-2">
             <div class="admin-stat">
-                <span class="muted">Borradores</span>
+                <span class="muted">{{ __('Borradores') }}</span>
                 <strong>{{ $stats['drafts'] }}</strong>
             </div>
         </div>
         <div class="col-md-6 col-xl-2">
             <div class="admin-stat">
-                <span class="muted">Servicios</span>
+                <span class="muted">{{ __('Servicios') }}</span>
                 <strong>{{ $stats['services'] }}</strong>
             </div>
         </div>
         <div class="col-md-6 col-xl-2">
             <div class="admin-stat">
-                <span class="muted">Cursos</span>
+                <span class="muted">{{ __('Cursos') }}</span>
                 <strong>{{ $stats['courses'] }}</strong>
             </div>
         </div>
         <div class="col-md-6 col-xl-2">
             <div class="admin-stat">
-                <span class="muted">Mensajes sin revisar</span>
+                <span class="muted">{{ __('Mensajes sin revisar') }}</span>
                 <strong>{{ $stats['unreviewedMessages'] }}</strong>
             </div>
         </div>
         <div class="col-md-6 col-xl-2">
             <div class="admin-stat">
-                <span class="muted">Mensajes totales</span>
+                <span class="muted">{{ __('Mensajes totales') }}</span>
                 <strong>{{ $stats['totalMessages'] }}</strong>
             </div>
         </div>
@@ -60,18 +60,18 @@
         <div class="col-lg-6">
             <div class="table-shell h-100">
                 <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                    <h2 class="h4 text-white mb-0">Publicaciones recientes</h2>
-                    <a href="{{ route('admin.posts.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Gestionar</a>
+                    <h2 class="h4 text-white mb-0">{{ __('Publicaciones recientes') }}</h2>
+                    <a href="{{ route('admin.posts.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Gestionar') }}</a>
                 </div>
 
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Estado</th>
-                                <th>Actualizado</th>
-                                <th class="text-end">Accion</th>
+                                <th>{{ __('Titulo') }}</th>
+                                <th>{{ __('Estado') }}</th>
+                                <th>{{ __('Actualizado') }}</th>
+                                <th class="text-end">{{ __('Accion') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,11 +83,11 @@
                                     </td>
                                     <td><span class="badge text-bg-{{ $post->status === 'published' ? 'success' : 'secondary' }}">{{ $post->status }}</span></td>
                                     <td>{{ optional($post->updated_at)->format('d/m/Y H:i') }}</td>
-                                    <td class="text-end"><a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Editar</a></td>
+                                    <td class="text-end"><a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Editar') }}</a></td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="muted">Todavia no hay publicaciones creadas.</td>
+                                    <td colspan="4" class="muted">{{ __('Todavia no hay publicaciones creadas.') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -101,8 +101,8 @@
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                            <h2 class="h4 text-white mb-0">Servicios</h2>
-                            <a href="{{ route('admin.services.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Gestionar</a>
+                            <h2 class="h4 text-white mb-0">{{ __('Servicios') }}</h2>
+                            <a href="{{ route('admin.services.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Gestionar') }}</a>
                         </div>
 
                         <div class="d-grid gap-3">
@@ -113,15 +113,15 @@
                                     <div class="muted">{{ $service->excerpt }}</div>
                                 </div>
                             @empty
-                                <div class="muted">Aun no hay servicios creados.</div>
+                                <div class="muted">{{ __('Aun no hay servicios creados.') }}</div>
                             @endforelse
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                            <h2 class="h4 text-white mb-0">Cursos</h2>
-                            <a href="{{ route('admin.courses.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Gestionar</a>
+                            <h2 class="h4 text-white mb-0">{{ __('Cursos') }}</h2>
+                            <a href="{{ route('admin.courses.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Gestionar') }}</a>
                         </div>
 
                         <div class="d-grid gap-3">
@@ -132,7 +132,7 @@
                                     <div class="muted">{{ $course->duration }} | {{ $course->audience }}</div>
                                 </div>
                             @empty
-                                <div class="muted">Aun no hay cursos creados.</div>
+                                <div class="muted">{{ __('Aun no hay cursos creados.') }}</div>
                             @endforelse
                         </div>
                     </div>
@@ -143,8 +143,8 @@
         <div class="col-12">
             <div class="admin-card h-100">
                 <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                    <h2 class="h4 text-white mb-0">Ultimos mensajes</h2>
-                    <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Abrir bandeja</a>
+                    <h2 class="h4 text-white mb-0">{{ __('Ultimos mensajes') }}</h2>
+                    <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Abrir bandeja') }}</a>
                 </div>
 
                 <div class="d-grid gap-3">
@@ -152,13 +152,13 @@
                         <div class="frame-card p-3">
                             <div class="d-flex justify-content-between gap-3 mb-2">
                                 <strong class="text-white">{{ $message->name }}</strong>
-                                <span class="badge text-bg-{{ $message->reviewed_at ? 'success' : 'warning' }}">{{ $message->reviewed_at ? 'Revisado' : 'Nuevo' }}</span>
+                                <span class="badge text-bg-{{ $message->reviewed_at ? 'success' : 'warning' }}">{{ $message->reviewed_at ? __('Revisado') : __('Nuevo') }}</span>
                             </div>
                             <div class="muted small mb-2">{{ $message->email }} | {{ $message->service }}</div>
                             <p class="muted mb-0">{{ \Illuminate\Support\Str::limit($message->message, 120) }}</p>
                         </div>
                     @empty
-                        <div class="muted">Aun no has recibido mensajes desde el formulario.</div>
+                        <div class="muted">{{ __('Aun no has recibido mensajes desde el formulario.') }}</div>
                     @endforelse
                 </div>
             </div>

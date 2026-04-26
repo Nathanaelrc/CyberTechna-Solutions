@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', 'Acceso propietario | CyberTechna Solutions')
+@section('title', __('Acceso propietario').' | CyberTechna Solutions')
 
 @section('content')
     <section class="section-space">
@@ -8,28 +8,28 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-8">
                     <div class="frame-card">
-                        <span class="eyebrow">Acceso propietario</span>
-                        <h1 class="h2 text-white mt-3 mb-3">Entra a tu panel privado para publicar y gestionar el sitio.</h1>
-                        <p class="section-copy mb-4">Este acceso esta pensado para el usuario administrador de CyberTechna Solutions. Desde aqui podras crear publicaciones y revisar contactos comerciales.</p>
+                        <span class="eyebrow">{{ __('Acceso propietario') }}</span>
+                        <h1 class="h2 text-white mt-3 mb-3">{{ __('Entra a tu panel privado para publicar y gestionar el sitio.') }}</h1>
+                        <p class="section-copy mb-4">{{ __('Este acceso esta pensado para el usuario administrador de CyberTechna Solutions. Desde aqui podras crear publicaciones y revisar contactos comerciales.') }}</p>
 
                         <form method="POST" action="{{ route('login.store') }}">
                             @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">{{ __('Email') }}</label>
                                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus>
                             </div>
 
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">{{ __('Password') }}</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
 
                             <div class="form-check mb-4">
                                 <input class="form-check-input" type="checkbox" value="1" id="remember" name="remember" @checked(old('remember'))>
-                                <label class="form-check-label" for="remember">Mantener sesion iniciada</label>
+                                <label class="form-check-label" for="remember">{{ __('Mantener sesion iniciada') }}</label>
                             </div>
 
-                            <button type="submit" class="btn btn-owner w-100">Entrar al panel</button>
+                            <button type="submit" class="btn btn-owner w-100">{{ __('Entrar al panel') }}</button>
                         </form>
                     </div>
                 </div>

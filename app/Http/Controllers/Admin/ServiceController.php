@@ -37,11 +37,10 @@ class ServiceController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validatedData($request);
-        $data['slug'] = $this->makeUniqueSlug($data['title']);
-        $data['deliverables'] = $this->linesToArray($request->input('deliverables'));
-        $data['details'] = $this->linesToArray($request->input('details'));
+        $payload = $this->persistedData($data);
+        $payload['slug'] = $this->makeUniqueSlug($payload['title']);
 
-        Service::create($data);
+        Service::create($payload);
 
         return redirect()->route('admin.services.index')->with('status', 'Servicio creado correctamente.');
     }
@@ -56,13 +55,12 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service): RedirectResponse
     {
         $data = $this->validatedData($request);
-        $data['slug'] = $service->title === $data['title']
+        $payload = $this->persistedData($data);
+        $payload['slug'] = $service->getRawOriginal('title') === $data['title_es']
             ? $service->slug
-            : $this->makeUniqueSlug($data['title'], $service->id);
-        $data['deliverables'] = $this->linesToArray($request->input('deliverables'));
-        $data['details'] = $this->linesToArray($request->input('details'));
+            : $this->makeUniqueSlug($payload['title'], $service->id);
 
-        $service->update($data);
+        $service->update($payload);
 
         return redirect()->route('admin.services.index')->with('status', 'Servicio actualizado.');
     }
@@ -77,14 +75,53 @@ class ServiceController extends Controller
     private function validatedData(Request $request): array
     {
         return $request->validate([
-            'title' => ['required', 'string', 'max:160'],
-            'excerpt' => ['required', 'string', 'max:320'],
-            'description' => ['required', 'string', 'min:40'],
-            'deliverables' => ['nullable', 'string'],
-            'details' => ['nullable', 'string'],
+            'title_es' => ['required', 'string', 'max:160'],
+            'title_en' => ['required', 'string', 'max:160'],
+            'excerpt_es' => ['required', 'string', 'max:320'],
+            'excerpt_en' => ['required', 'string', 'max:320'],
+            'description_es' => ['required', 'string', 'min:40'],
+            'description_en' => ['required', 'string', 'min:40'],
+            'deliverables_es' => ['required', 'string'],
+            'deliverables_en' => ['required', 'string'],
+            'details_es' => ['required', 'string'],
+            'details_en' => ['required', 'string'],
             'status' => ['required', Rule::in(['draft', 'published'])],
             'sort_order' => ['required', 'integer', 'min:0', 'max:9999'],
         ]);
+    }
+
+    private function persistedData(array $data): array
+    {
+        $deliverablesEs = $this->linesToArray($data['deliverables_es']);
+        $deliverablesEn = $this->linesToArray($data['deliverables_en']);
+        $detailsEs = $this->linesToArray($data['details_es']);
+        $detailsEn = $this->linesToArray($data['details_en']);
+
+        return [
+            'title' => $data['title_es'],
+            'excerpt' => $data['excerpt_es'],
+            'description' => $data['description_es'],
+            'deliverables' => $deliverablesEs,
+            'details' => $detailsEs,
+            'status' => $data['status'],
+            'sort_order' => $data['sort_order'],
+            'translations' => [
+                'es' => [
+                    'title' => $data['title_es'],
+                    'excerpt' => $data['excerpt_es'],
+                    'description' => $data['description_es'],
+                    'deliverables' => $deliverablesEs,
+                    'details' => $detailsEs,
+                ],
+                'en' => [
+                    'title' => $data['title_en'],
+                    'excerpt' => $data['excerpt_en'],
+                    'description' => $data['description_en'],
+                    'deliverables' => $deliverablesEn,
+                    'details' => $detailsEn,
+                ],
+            ],
+        ];
     }
 
     private function linesToArray(?string $value): array

@@ -1,32 +1,111 @@
+@php
+    $translations = $course->translations ?? [];
+    $rawTopics = $course->getRawOriginal('topics');
+    $topicsFallback = is_array($rawTopics) ? $rawTopics : (is_string($rawTopics) ? (json_decode($rawTopics, true) ?: []) : []);
+
+    $titleEs = old('title_es', data_get($translations, 'es.title', $course->getRawOriginal('title')));
+    $titleEn = old('title_en', data_get($translations, 'en.title', ''));
+    $excerptEs = old('excerpt_es', data_get($translations, 'es.excerpt', $course->getRawOriginal('excerpt')));
+    $excerptEn = old('excerpt_en', data_get($translations, 'en.excerpt', ''));
+    $descriptionEs = old('description_es', data_get($translations, 'es.description', $course->getRawOriginal('description')));
+    $descriptionEn = old('description_en', data_get($translations, 'en.description', ''));
+    $audienceEs = old('audience_es', data_get($translations, 'es.audience', $course->getRawOriginal('audience')));
+    $audienceEn = old('audience_en', data_get($translations, 'en.audience', ''));
+    $durationEs = old('duration_es', data_get($translations, 'es.duration', $course->getRawOriginal('duration')));
+    $durationEn = old('duration_en', data_get($translations, 'en.duration', ''));
+    $topicsEs = old('topics_es', implode("\n", data_get($translations, 'es.topics', $topicsFallback)));
+    $topicsEn = old('topics_en', implode("\n", data_get($translations, 'en.topics', [])));
+@endphp
+
 <div class="row g-4">
-    <div class="col-12">
-        <label for="title" class="form-label">Titulo</label>
-        <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $course->title) }}" maxlength="160" required>
+    <div class="col-12 d-flex justify-content-between align-items-center gap-3 flex-wrap">
+        <div>
+            <div class="text-uppercase muted small fw-bold mb-2">ES / EN</div>
+            <h2 class="h4 text-white mb-0">Curso bilingue</h2>
+        </div>
+        <span class="badge text-bg-secondary rounded-pill px-3 py-2">Base: ES, apoyo: EN</span>
     </div>
 
-    <div class="col-12">
-        <label for="excerpt" class="form-label">Resumen corto</label>
-        <textarea class="form-control" id="excerpt" name="excerpt" rows="3" maxlength="320" required>{{ old('excerpt', $course->excerpt) }}</textarea>
+    <div class="col-lg-6">
+        <div class="admin-card h-100 p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h5 text-white mb-0">Español</h3>
+                <span class="badge text-bg-success rounded-pill">ES</span>
+            </div>
+
+            <div class="d-grid gap-3">
+                <div>
+                    <label for="title_es" class="form-label">Titulo</label>
+                    <input type="text" class="form-control" id="title_es" name="title_es" value="{{ $titleEs }}" maxlength="160" required>
+                </div>
+
+                <div>
+                    <label for="excerpt_es" class="form-label">Resumen corto</label>
+                    <textarea class="form-control" id="excerpt_es" name="excerpt_es" rows="3" maxlength="320" required>{{ $excerptEs }}</textarea>
+                </div>
+
+                <div>
+                    <label for="description_es" class="form-label">Descripcion</label>
+                    <textarea class="form-control" id="description_es" name="description_es" rows="8" required>{{ $descriptionEs }}</textarea>
+                </div>
+
+                <div>
+                    <label for="audience_es" class="form-label">Audiencia</label>
+                    <input type="text" class="form-control" id="audience_es" name="audience_es" value="{{ $audienceEs }}" maxlength="190" required>
+                </div>
+
+                <div>
+                    <label for="duration_es" class="form-label">Duracion</label>
+                    <input type="text" class="form-control" id="duration_es" name="duration_es" value="{{ $durationEs }}" maxlength="120" required>
+                </div>
+
+                <div>
+                    <label for="topics_es" class="form-label">Temas</label>
+                    <textarea class="form-control" id="topics_es" name="topics_es" rows="8" placeholder="Un tema por linea" required>{{ $topicsEs }}</textarea>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-12">
-        <label for="description" class="form-label">Descripcion</label>
-        <textarea class="form-control" id="description" name="description" rows="8" required>{{ old('description', $course->description) }}</textarea>
-    </div>
+    <div class="col-lg-6">
+        <div class="admin-card h-100 p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h5 text-white mb-0">English</h3>
+                <span class="badge text-bg-warning rounded-pill">EN</span>
+            </div>
 
-    <div class="col-md-6">
-        <label for="audience" class="form-label">Audiencia</label>
-        <input type="text" class="form-control" id="audience" name="audience" value="{{ old('audience', $course->audience) }}" maxlength="190" required>
-    </div>
+            <div class="d-grid gap-3">
+                <div>
+                    <label for="title_en" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title_en" name="title_en" value="{{ $titleEn }}" maxlength="160" required>
+                </div>
 
-    <div class="col-md-6">
-        <label for="duration" class="form-label">Duracion</label>
-        <input type="text" class="form-control" id="duration" name="duration" value="{{ old('duration', $course->duration) }}" maxlength="120" required>
-    </div>
+                <div>
+                    <label for="excerpt_en" class="form-label">Short summary</label>
+                    <textarea class="form-control" id="excerpt_en" name="excerpt_en" rows="3" maxlength="320" required>{{ $excerptEn }}</textarea>
+                </div>
 
-    <div class="col-md-6">
-        <label for="topics" class="form-label">Temas</label>
-        <textarea class="form-control" id="topics" name="topics" rows="8" placeholder="Un tema por linea">{{ old('topics', implode("\n", $course->topics ?? [])) }}</textarea>
+                <div>
+                    <label for="description_en" class="form-label">Description</label>
+                    <textarea class="form-control" id="description_en" name="description_en" rows="8" required>{{ $descriptionEn }}</textarea>
+                </div>
+
+                <div>
+                    <label for="audience_en" class="form-label">Audience</label>
+                    <input type="text" class="form-control" id="audience_en" name="audience_en" value="{{ $audienceEn }}" maxlength="190" required>
+                </div>
+
+                <div>
+                    <label for="duration_en" class="form-label">Duration</label>
+                    <input type="text" class="form-control" id="duration_en" name="duration_en" value="{{ $durationEn }}" maxlength="120" required>
+                </div>
+
+                <div>
+                    <label for="topics_en" class="form-label">Topics</label>
+                    <textarea class="form-control" id="topics_en" name="topics_en" rows="8" placeholder="One topic per line" required>{{ $topicsEn }}</textarea>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-3">

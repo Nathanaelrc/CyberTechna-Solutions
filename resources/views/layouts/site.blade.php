@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@yield('title', 'CyberTechna Solutions')</title>
-        <meta name="description" content="@yield('meta_description', 'Auditorias de ciberseguridad, pentesting, cursos y acompanamiento tecnico para empresas.')">
+        <title>@yield('title', __('CyberTechna Solutions'))</title>
+        <meta name="description" content="@yield('meta_description', __('Auditorias de ciberseguridad, pentesting, cursos y acompanamiento tecnico para empresas.'))">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -544,24 +544,28 @@
 
                     <div class="collapse navbar-collapse" id="primaryNav">
                         <ul class="navbar-nav ms-auto mb-3 mb-lg-0 gap-lg-2">
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}" href="{{ route('services') }}">Servicios</a></li>
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('method') ? 'active' : '' }}" href="{{ route('method') }}">Metodo</a></li>
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('courses*') ? 'active' : '' }}" href="{{ route('courses') }}">Cursos</a></li>
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li>
+                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}" href="{{ route('services') }}">{{ __('Servicios') }}</a></li>
+                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('method') ? 'active' : '' }}" href="{{ route('method') }}">{{ __('Metodo') }}</a></li>
+                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('courses*') ? 'active' : '' }}" href="{{ route('courses') }}">{{ __('Cursos') }}</a></li>
+                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">{{ __('Contacto') }}</a></li>
                         </ul>
 
-                        <div class="nav-owner-actions d-flex flex-column flex-lg-row gap-2 ms-lg-3">
+                        <div class="nav-owner-actions d-flex flex-column flex-lg-row gap-2 ms-lg-3 align-items-lg-center">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Language switcher">
+                                <a href="{{ route('locale.switch', ['locale' => 'es']) }}" class="btn {{ app()->getLocale() === 'es' ? 'btn-owner' : 'btn-ghost' }}">ES</a>
+                                <a href="{{ route('locale.switch', ['locale' => 'en']) }}" class="btn {{ app()->getLocale() === 'en' ? 'btn-owner' : 'btn-ghost' }}">EN</a>
+                            </div>
                             @auth
                                 @if (auth()->user()->is_admin)
-                                    <a href="{{ route('admin.dashboard') }}" class="btn btn-owner">Panel privado</a>
+                                    <a href="{{ route('admin.dashboard') }}" class="btn btn-owner">{{ __('Panel privado') }}</a>
                                 @endif
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-ghost w-100">Cerrar sesion</button>
+                                    <button type="submit" class="btn btn-ghost w-100">{{ __('Cerrar sesion') }}</button>
                                 </form>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-ghost">Acceso propietario</a>
+                                <a href="{{ route('login') }}" class="btn btn-ghost">{{ __('Acceso propietario') }}</a>
                             @endauth
                         </div>
                     </div>
@@ -581,11 +585,11 @@
             <div class="container d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-center">
                 <div>
                     <strong class="d-block text-white mb-1">CyberTechna Solutions</strong>
-                    <span class="footer-copy">Auditorias, pentesting, formacion y acompanamiento para equipos que no quieren improvisar su seguridad.</span>
+                    <span class="footer-copy">{{ __('Auditorias, pentesting, formacion y acompanamiento para equipos que no quieren improvisar su seguridad.') }}</span>
                 </div>
                 <div class="footer-copy text-lg-end">
-                    <div>Contacto: contacto@cybertechna.local</div>
-                    <div>Desarrollado con Laravel, Bootstrap y Docker.</div>
+                    <div>{{ __('Contacto: contacto@cybertechna.local') }}</div>
+                    <div>{{ __('Desarrollado con Laravel, Bootstrap y Docker.') }}</div>
                 </div>
             </div>
         </footer>

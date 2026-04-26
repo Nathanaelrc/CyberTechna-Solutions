@@ -37,13 +37,14 @@ class PostController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validatedData($request);
-        $data['slug'] = $this->makeUniqueSlug($data['title']);
-        $data['published_at'] = $this->resolvePublishedAt($data['status'], $data['published_at'] ?? null);
-        $data['user_id'] = $request->user()->id;
+        $payload = $this->persistedData($data);
+        $payload['slug'] = $this->makeUniqueSlug($payload['title']);
+        $payload['published_at'] = $this->resolvePublishedAt($payload['status'], $data['published_at'] ?? null);
+        $payload['user_id'] = $request->user()->id;
 
-        Post::create($data);
+        Post::create($payload);
 
-        return redirect()->route('admin.posts.index')->with('status', 'Publicacion creada correctamente.');
+        return redirect()->route('admin.posts.index')->with('status', __('Publicacion creada correctamente.'));
     }
 
     public function edit(Post $post): View
@@ -56,32 +57,58 @@ class PostController extends Controller
     public function update(Request $request, Post $post): RedirectResponse
     {
         $data = $this->validatedData($request, $post);
-        $data['slug'] = $post->title === $data['title']
+        $payload = $this->persistedData($data);
+        $payload['slug'] = $post->getRawOriginal('title') === $data['title_es']
             ? $post->slug
-            : $this->makeUniqueSlug($data['title'], $post->id);
-        $data['published_at'] = $this->resolvePublishedAt($data['status'], $data['published_at'] ?? null);
+            : $this->makeUniqueSlug($payload['title'], $post->id);
+        $payload['published_at'] = $this->resolvePublishedAt($payload['status'], $data['published_at'] ?? null);
 
-        $post->update($data);
+        $post->update($payload);
 
-        return redirect()->route('admin.posts.index')->with('status', 'Publicacion actualizada.');
+        return redirect()->route('admin.posts.index')->with('status', __('Publicacion actualizada.'));
     }
 
     public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('status', 'Publicacion eliminada.');
+        return redirect()->route('admin.posts.index')->with('status', __('Publicacion eliminada.'));
     }
 
     private function validatedData(Request $request, ?Post $post = null): array
     {
         return $request->validate([
-            'title' => ['required', 'string', 'max:160'],
-            'excerpt' => ['required', 'string', 'max:320'],
-            'content' => ['required', 'string', 'min:40'],
+            'title_es' => ['required', 'string', 'max:160'],
+            'title_en' => ['required', 'string', 'max:160'],
+            'excerpt_es' => ['required', 'string', 'max:320'],
+            'excerpt_en' => ['required', 'string', 'max:320'],
+            'content_es' => ['required', 'string', 'min:40'],
+            'content_en' => ['required', 'string', 'min:40'],
             'status' => ['required', Rule::in(['draft', 'published'])],
             'published_at' => ['nullable', 'date'],
         ]);
+    }
+
+    private function persistedData(array $data): array
+    {
+        return [
+            'title' => $data['title_es'],
+            'excerpt' => $data['excerpt_es'],
+            'content' => $data['content_es'],
+            'status' => $data['status'],
+            'translations' => [
+                'es' => [
+                    'title' => $data['title_es'],
+                    'excerpt' => $data['excerpt_es'],
+                    'content' => $data['content_es'],
+                ],
+                'en' => [
+                    'title' => $data['title_en'],
+                    'excerpt' => $data['excerpt_en'],
+                    'content' => $data['content_en'],
+                ],
+            ],
+        ];
     }
 
     private function makeUniqueSlug(string $title, ?int $ignoreId = null): string

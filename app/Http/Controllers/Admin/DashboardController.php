@@ -54,6 +54,6 @@ class DashboardController extends Controller
             ]);
         }
 
-        return back()->with('status', 'Mensaje marcado como revisado.');
+        return back()->with('status', __('Mensaje marcado como revisado.'));
     }
 }

@@ -37,10 +37,10 @@ class CourseController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validatedData($request);
-        $data['slug'] = $this->makeUniqueSlug($data['title']);
-        $data['topics'] = $this->linesToArray($request->input('topics'));
+        $payload = $this->persistedData($data);
+        $payload['slug'] = $this->makeUniqueSlug($payload['title']);
 
-        Course::create($data);
+        Course::create($payload);
 
         return redirect()->route('admin.courses.index')->with('status', 'Curso creado correctamente.');
     }
@@ -55,12 +55,12 @@ class CourseController extends Controller
     public function update(Request $request, Course $course): RedirectResponse
     {
         $data = $this->validatedData($request);
-        $data['slug'] = $course->title === $data['title']
+        $payload = $this->persistedData($data);
+        $payload['slug'] = $course->getRawOriginal('title') === $data['title_es']
             ? $course->slug
-            : $this->makeUniqueSlug($data['title'], $course->id);
-        $data['topics'] = $this->linesToArray($request->input('topics'));
+            : $this->makeUniqueSlug($payload['title'], $course->id);
 
-        $course->update($data);
+        $course->update($payload);
 
         return redirect()->route('admin.courses.index')->with('status', 'Curso actualizado.');
     }
@@ -75,15 +75,56 @@ class CourseController extends Controller
     private function validatedData(Request $request): array
     {
         return $request->validate([
-            'title' => ['required', 'string', 'max:160'],
-            'excerpt' => ['required', 'string', 'max:320'],
-            'description' => ['required', 'string', 'min:40'],
-            'audience' => ['required', 'string', 'max:190'],
-            'duration' => ['required', 'string', 'max:120'],
-            'topics' => ['nullable', 'string'],
+            'title_es' => ['required', 'string', 'max:160'],
+            'title_en' => ['required', 'string', 'max:160'],
+            'excerpt_es' => ['required', 'string', 'max:320'],
+            'excerpt_en' => ['required', 'string', 'max:320'],
+            'description_es' => ['required', 'string', 'min:40'],
+            'description_en' => ['required', 'string', 'min:40'],
+            'audience_es' => ['required', 'string', 'max:190'],
+            'audience_en' => ['required', 'string', 'max:190'],
+            'duration_es' => ['required', 'string', 'max:120'],
+            'duration_en' => ['required', 'string', 'max:120'],
+            'topics_es' => ['required', 'string'],
+            'topics_en' => ['required', 'string'],
             'status' => ['required', Rule::in(['draft', 'published'])],
             'sort_order' => ['required', 'integer', 'min:0', 'max:9999'],
         ]);
+    }
+
+    private function persistedData(array $data): array
+    {
+        $topicsEs = $this->linesToArray($data['topics_es']);
+        $topicsEn = $this->linesToArray($data['topics_en']);
+
+        return [
+            'title' => $data['title_es'],
+            'excerpt' => $data['excerpt_es'],
+            'description' => $data['description_es'],
+            'audience' => $data['audience_es'],
+            'duration' => $data['duration_es'],
+            'topics' => $topicsEs,
+            'status' => $data['status'],
+            'sort_order' => $data['sort_order'],
+            'translations' => [
+                'es' => [
+                    'title' => $data['title_es'],
+                    'excerpt' => $data['excerpt_es'],
+                    'description' => $data['description_es'],
+                    'audience' => $data['audience_es'],
+                    'duration' => $data['duration_es'],
+                    'topics' => $topicsEs,
+                ],
+                'en' => [
+                    'title' => $data['title_en'],
+                    'excerpt' => $data['excerpt_en'],
+                    'description' => $data['description_en'],
+                    'audience' => $data['audience_en'],
+                    'duration' => $data['duration_en'],
+                    'topics' => $topicsEn,
+                ],
+            ],
+        ];
     }
 
     private function linesToArray(?string $value): array
