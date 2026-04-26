@@ -8,7 +8,7 @@ Sitio corporativo desarrollado con Laravel 13, Bootstrap 5 y Docker para ofrecer
 - Login reservado al propietario y dashboard privado.
 - CRUD de publicaciones para compartir novedades, articulos o casos.
 - Bandeja de mensajes recibidos desde el formulario de contacto.
-- Docker Compose con Nginx, PHP 8.3-FPM y MySQL 8.4.
+- Docker Compose con Nginx, PHP 8.5-FPM y MySQL 8.4.
 
 ## Arranque rapido
 

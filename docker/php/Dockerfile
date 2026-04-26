@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.5-fpm
 
 WORKDIR /var/www/html
 
@@ -9,15 +9,10 @@ RUN apt-get update \
         unzip \
         libicu-dev \
         libzip-dev \
-        libxml2-dev \
-        libonig-dev \
     && docker-php-ext-install \
         bcmath \
-        dom \
         intl \
-        mbstring \
         pdo_mysql \
-        xml \
         zip \
     && rm -rf /var/lib/apt/lists/*
 
