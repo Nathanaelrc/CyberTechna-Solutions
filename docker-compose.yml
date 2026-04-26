@@ -4,8 +4,7 @@ services:
       context: .
       dockerfile: docker/php/Dockerfile
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     restart: unless-stopped
     expose:
       - "9000"
