@@ -7,6 +7,24 @@ if [ ! -f .env ] && [ -f .env.example ]; then
     cp .env.example .env
 fi
 
+for key in APP_ENV APP_URL DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD DB_ROOT_PASSWORD; do
+    value="${!key:-}"
+
+    if [ -z "$value" ] || [ ! -f .env ]; then
+        continue
+    fi
+
+    escaped_value=${value//\\/\\\\}
+    escaped_value=${escaped_value//&/\\&}
+    escaped_value=${escaped_value//|/\\|}
+
+    if grep -q "^${key}=" .env; then
+        sed -i "s|^${key}=.*$|${key}=${escaped_value}|" .env
+    else
+        printf '%s=%s\n' "$key" "$value" >> .env
+    fi
+done
+
 set -a
 . ./.env
 set +a

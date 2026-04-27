@@ -8,8 +8,16 @@ services:
     restart: unless-stopped
     expose:
       - "9000"
-    volumes:
-      - ./:/var/www/html
+    environment:
+      APP_ENV: ${APP_ENV:-local}
+      APP_URL: ${APP_URL:-http://localhost:9090}
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-cybertechna}
+      DB_USERNAME: ${DB_USERNAME:-cybertechna}
+      DB_PASSWORD: ${DB_PASSWORD:-cybertechna_secret}
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-cybertechna_root}
 
   nginx:
     build:
@@ -20,8 +28,6 @@ services:
     ports:
       - "9090:80"
     restart: unless-stopped
-    volumes:
-      - ./:/var/www/html:ro
     healthcheck:
       test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/healthz || exit 1"]
       interval: 10s
@@ -33,10 +39,10 @@ services:
     image: mysql:8.4
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE:-cybertechna}
+      MYSQL_USER: ${DB_USERNAME:-cybertechna}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-cybertechna_secret}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-cybertechna_root}
     healthcheck:
       test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h 127.0.0.1 -uroot --silent"]
       interval: 5s
