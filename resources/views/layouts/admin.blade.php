@@ -181,7 +181,7 @@
 
                     <form method="POST" action="{{ route('logout') }}" class="ms-lg-3">
                         @csrf
-                        <button type="submit" class="btn btn-outline-light rounded-pill px-4">Cerrar sesion</button>
+                        <button type="submit" class="btn btn-outline-light rounded-pill px-4">{{ __('Cerrar sesión') }}</button>
                     </form>
                 </div>
             </div>

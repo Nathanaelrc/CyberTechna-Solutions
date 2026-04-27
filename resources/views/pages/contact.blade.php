@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('title', __('Contacto').' | CyberTechna Solutions')
-@section('meta_description', __('Habla con CyberTechna Solutions sobre auditorias, pentesting, cursos y acompanamiento continuo.'))
+@section('meta_description', __('Habla con CyberTechna Solutions sobre auditorías, pentesting, cursos y acompañamiento continuo.'))
 
 @section('content')
     <section class="section-space pb-4">
@@ -9,8 +9,8 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
                     <span class="eyebrow">{{ __('Contacto') }}</span>
-                    <h1 class="hero-title">{{ __('Cuanto mejor entendamos tu contexto, mejor definimos el alcance.') }}</h1>
-                    <p class="hero-copy mb-0">{{ __('Si buscas una auditoria, un pentest, cursos o acompanamiento continuo, cuentanos el punto de partida, el tipo de activo y la urgencia. Te responderemos con una propuesta clara y realista.') }}</p>
+                    <h1 class="hero-title">{{ __('Cuánto mejor entendamos tu contexto, mejor definimos el alcance.') }}</h1>
+                    <p class="hero-copy mb-0">{{ __('Si buscas una auditoría, un pentest, cursos o acompañamiento continuo, cuéntanos el punto de partida, el tipo de activo y la urgencia. Te responderemos con una propuesta clara y realista.') }}</p>
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-card h-100">
@@ -33,7 +33,7 @@
                     <div class="frame-card h-100">
                         <div class="signal-bar"></div>
                         <h2 class="section-heading mb-3">{{ __('Formulario de contacto') }}</h2>
-                        <p class="section-copy mb-4">{{ __('El mensaje queda visible en tu panel privado para seguimiento. Si indicas bien el servicio, el tipo de activo y la urgencia, podremos proponerte un alcance mas util desde el primer intercambio.') }}</p>
+                        <p class="section-copy mb-4">{{ __('El mensaje queda visible en tu panel privado para seguimiento. Si indicas bien el servicio, el tipo de activo y la urgencia, podremos proponerte un alcance más útil desde el primer intercambio.') }}</p>
 
                         <form method="POST" action="{{ route('contact.store') }}" class="contact-form">
                             @csrf
@@ -51,7 +51,7 @@
                                     <input type="text" class="form-control" id="company" name="company" value="{{ old('company') }}" placeholder="{{ __('Nombre de la empresa') }}">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="service" class="form-label">{{ __('Servicio de interes') }}</label>
+                                    <label for="service" class="form-label">{{ __('Servicio de interés') }}</label>
                                     <select class="form-select" id="service" name="service" required>
                                         <option value="">{{ __('Selecciona un servicio') }}</option>
                                         @foreach ($serviceHighlights as $service)
@@ -75,19 +75,19 @@
 
                 <div class="col-lg-5">
                     <div class="hero-card h-100">
-                        <div class="soft-label mb-3">{{ __('Que conviene indicarnos') }}</div>
+                        <div class="soft-label mb-3">{{ __('Qué conviene indicarnos') }}</div>
                         <div class="status-line">
                             <span class="status-index">A</span>
                             <div>
                                 <strong class="d-block text-white mb-1">{{ __('Activo o alcance') }}</strong>
-                                <span class="form-note">{{ __('Aplicacion, API, red interna, nube, cumplimiento, equipo a formar.') }}</span>
+                                <span class="form-note">{{ __('Aplicación, API, red interna, nube, cumplimiento, equipo a formar.') }}</span>
                             </div>
                         </div>
                         <div class="status-line">
                             <span class="status-index">B</span>
                             <div>
                                 <strong class="d-block text-white mb-1">{{ __('Motivo del proyecto') }}</strong>
-                                <span class="form-note">{{ __('Cliente, certificacion, riesgo interno, hoja de ruta o mejora continua.') }}</span>
+                                <span class="form-note">{{ __('Cliente, certificación, riesgo interno, hoja de ruta o mejora continua.') }}</span>
                             </div>
                         </div>
                         <div class="status-line">

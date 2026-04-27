@@ -21,7 +21,7 @@
     <div class="col-12 d-flex justify-content-between align-items-center gap-3 flex-wrap">
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">ES / EN</div>
-            <h2 class="h4 text-white mb-0">Servicio bilingue</h2>
+            <h2 class="h4 text-white mb-0">Servicio bilingüe</h2>
         </div>
         <span class="badge text-bg-secondary rounded-pill px-3 py-2">Base: ES, apoyo: EN</span>
     </div>
@@ -35,7 +35,7 @@
 
             <div class="d-grid gap-3">
                 <div>
-                    <label for="title_es" class="form-label">Titulo</label>
+                    <label for="title_es" class="form-label">Título</label>
                     <input type="text" class="form-control" id="title_es" name="title_es" value="{{ $titleEs }}" maxlength="160" required>
                 </div>
 
@@ -45,18 +45,18 @@
                 </div>
 
                 <div>
-                    <label for="description_es" class="form-label">Descripcion</label>
+                    <label for="description_es" class="form-label">Descripción</label>
                     <textarea class="form-control" id="description_es" name="description_es" rows="8" required>{{ $descriptionEs }}</textarea>
                 </div>
 
                 <div>
                     <label for="deliverables_es" class="form-label">Entregables</label>
-                    <textarea class="form-control" id="deliverables_es" name="deliverables_es" rows="8" placeholder="Un entregable por linea" required>{{ $deliverablesEs }}</textarea>
+                    <textarea class="form-control" id="deliverables_es" name="deliverables_es" rows="8" placeholder="Un entregable por línea" required>{{ $deliverablesEs }}</textarea>
                 </div>
 
                 <div>
                     <label for="details_es" class="form-label">Detalles o variantes</label>
-                    <textarea class="form-control" id="details_es" name="details_es" rows="8" placeholder="Un detalle por linea" required>{{ $detailsEs }}</textarea>
+                    <textarea class="form-control" id="details_es" name="details_es" rows="8" placeholder="Un detalle por línea" required>{{ $detailsEs }}</textarea>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
 </div>
 
 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mt-4">
-    <span class="muted">Los servicios publicados aparecen en la home, en la pagina de servicios y en su propia pagina individual.</span>
+    <span class="muted">Los servicios publicados aparecen en la home, en la página de servicios y en su propia página individual.</span>
     <div class="d-flex gap-2 flex-wrap">
         <a href="{{ route('admin.services.index') }}" class="btn btn-outline-light rounded-pill px-4">Cancelar</a>
         @if ($service->exists)

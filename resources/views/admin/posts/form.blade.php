@@ -13,7 +13,7 @@
     <div class="col-12 d-flex justify-content-between align-items-center gap-3 flex-wrap">
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">ES / EN</div>
-            <h2 class="h4 text-white mb-0">{{ __('Publicacion bilingue') }}</h2>
+            <h2 class="h4 text-white mb-0">{{ __('Publicación bilingüe') }}</h2>
         </div>
         <span class="badge text-bg-secondary rounded-pill px-3 py-2">{{ __('Base: ES, apoyo: EN') }}</span>
     </div>
@@ -27,7 +27,7 @@
 
             <div class="d-grid gap-3">
                 <div>
-                    <label for="title_es" class="form-label">{{ __('Titulo') }}</label>
+                    <label for="title_es" class="form-label">{{ __('Título') }}</label>
                     <input type="text" class="form-control" id="title_es" name="title_es" value="{{ $titleEs }}" maxlength="160" required>
                 </div>
 
@@ -79,15 +79,15 @@
     </div>
 
     <div class="col-md-6">
-        <label for="published_at" class="form-label">{{ __('Fecha de publicacion') }}</label>
+        <label for="published_at" class="form-label">{{ __('Fecha de publicación') }}</label>
         <input type="datetime-local" class="form-control" id="published_at" name="published_at" value="{{ old('published_at', optional($post->published_at)->format('Y-m-d\TH:i')) }}">
     </div>
 </div>
 
 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mt-4">
-    <span class="muted">{{ __('Los borradores solo se ven desde tu sesion de propietario. Las publicaciones se muestran en la landing e insights.') }}</span>
+    <span class="muted">{{ __('Los borradores solo se ven desde tu sesión de propietario. Las publicaciones se muestran en la landing e insights.') }}</span>
     <div class="d-flex gap-2">
         <a href="{{ route('admin.posts.index') }}" class="btn btn-outline-light rounded-pill px-4">{{ __('Cancelar') }}</a>
-        <button type="submit" class="btn btn-admin">{{ __('Guardar publicacion') }}</button>
+        <button type="submit" class="btn btn-admin">{{ __('Guardar publicación') }}</button>
     </div>
 </div>

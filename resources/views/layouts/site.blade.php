@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title', __('CyberTechna Solutions'))</title>
-        <meta name="description" content="@yield('meta_description', __('Auditorias de ciberseguridad, pentesting, cursos y acompanamiento tecnico para empresas.'))">
+        <meta name="description" content="@yield('meta_description', __('Auditorías de ciberseguridad, pentesting, cursos y acompañamiento técnico para empresas.'))">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -545,7 +545,7 @@
                     <div class="collapse navbar-collapse" id="primaryNav">
                         <ul class="navbar-nav ms-auto mb-3 mb-lg-0 gap-lg-2">
                             <li class="nav-item"><a class="nav-link {{ request()->routeIs('services*') ? 'active' : '' }}" href="{{ route('services') }}">{{ __('Servicios') }}</a></li>
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('method') ? 'active' : '' }}" href="{{ route('method') }}">{{ __('Metodo') }}</a></li>
+                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('method') ? 'active' : '' }}" href="{{ route('method') }}">{{ __('Método') }}</a></li>
                             <li class="nav-item"><a class="nav-link {{ request()->routeIs('courses*') ? 'active' : '' }}" href="{{ route('courses') }}">{{ __('Cursos') }}</a></li>
                             <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">{{ __('Contacto') }}</a></li>
                         </ul>
@@ -562,7 +562,7 @@
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-ghost w-100">{{ __('Cerrar sesion') }}</button>
+                                    <button type="submit" class="btn btn-ghost w-100">{{ __('Cerrar sesión') }}</button>
                                 </form>
                             @else
                                 <a href="{{ route('login') }}" class="btn btn-ghost">{{ __('Acceso propietario') }}</a>
@@ -585,7 +585,7 @@
             <div class="container d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-center">
                 <div>
                     <strong class="d-block text-white mb-1">CyberTechna Solutions</strong>
-                    <span class="footer-copy">{{ __('Auditorias, pentesting, formacion y acompanamiento para equipos que no quieren improvisar su seguridad.') }}</span>
+                    <span class="footer-copy">{{ __('Auditorías, pentesting, formación y acompañamiento para equipos que no quieren improvisar su seguridad.') }}</span>
                 </div>
                 <div class="footer-copy text-lg-end">
                     <div>{{ __('Contacto: contacto@cybertechna.local') }}</div>

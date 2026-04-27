@@ -33,10 +33,10 @@
                 <div class="row g-4 align-items-end mb-4">
                     <div class="col-lg-7">
                         <div class="signal-bar"></div>
-                        <h2 class="section-heading">{{ __('Como se aterriza este servicio') }}</h2>
+                        <h2 class="section-heading">{{ __('Cómo se aterriza este servicio') }}</h2>
                     </div>
                     <div class="col-lg-5">
-                        <p class="section-copy mb-0">{{ __('La profundidad depende del alcance y del tipo de activo, pero estas son algunas lineas habituales dentro del servicio.') }}</p>
+                        <p class="section-copy mb-0">{{ __('La profundidad depende del alcance y del tipo de activo, pero estas son algunas líneas habituales dentro del servicio.') }}</p>
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                 <div>
                     <div class="soft-label mb-2">{{ __('Siguiente paso') }}</div>
                     <strong class="d-block text-white mb-2">{{ __('Si este servicio encaja con tu necesidad, definimos alcance y prioridades contigo.') }}</strong>
-                    <span class="form-note">{{ __('Podemos partir por una reunion breve y bajar el servicio a tu contexto tecnico y de negocio.') }}</span>
+                    <span class="form-note">{{ __('Podemos partir por una reunión breve y bajar el servicio a tu contexto técnico y de negocio.') }}</span>
                 </div>
                 <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Solicitar propuesta') }}</a>
             </div>

@@ -34,7 +34,7 @@
                 <div class="row g-4 align-items-end mb-4">
                     <div class="col-lg-7">
                         <div class="signal-bar"></div>
-                        <h2 class="section-heading">{{ __('Otros cursos del catalogo') }}</h2>
+                        <h2 class="section-heading">{{ __('Otros cursos del catálogo') }}</h2>
                     </div>
                 </div>
 
@@ -61,9 +61,9 @@
         <div class="container">
             <div class="owner-banner">
                 <div>
-                    <div class="soft-label mb-2">{{ __('Capacitacion a medida') }}</div>
-                    <strong class="d-block text-white mb-2">{{ __('Este curso puede adaptarse al nivel tecnico, al area y a la intensidad que necesite tu equipo.') }}</strong>
-                    <span class="form-note">{{ __('Tambien podemos integrarlo dentro de una ruta mayor de formacion en ciberseguridad.') }}</span>
+                    <div class="soft-label mb-2">{{ __('Capacitación a medida') }}</div>
+                    <strong class="d-block text-white mb-2">{{ __('Este curso puede adaptarse al nivel técnico, al área y a la intensidad que necesite tu equipo.') }}</strong>
+                    <span class="form-note">{{ __('También podemos integrarlo dentro de una ruta mayor de formación en ciberseguridad.') }}</span>
                 </div>
                 <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Solicitar plan formativo') }}</a>
             </div>

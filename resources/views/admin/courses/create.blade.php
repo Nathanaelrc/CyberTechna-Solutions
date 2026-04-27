@@ -7,7 +7,7 @@
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">Nuevo contenido</div>
             <h1 class="display-6 text-white mb-2">Crear curso</h1>
-            <p class="muted mb-0">Define el curso, su audiencia, duracion y pagina individual dentro del sitio.</p>
+            <p class="muted mb-0">Define el curso, su audiencia, duración y página individual dentro del sitio.</p>
         </div>
     </div>
 

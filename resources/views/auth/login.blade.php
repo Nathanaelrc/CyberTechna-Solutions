@@ -10,7 +10,7 @@
                     <div class="frame-card">
                         <span class="eyebrow">{{ __('Acceso propietario') }}</span>
                         <h1 class="h2 text-white mt-3 mb-3">{{ __('Entra a tu panel privado para publicar y gestionar el sitio.') }}</h1>
-                        <p class="section-copy mb-4">{{ __('Este acceso esta pensado para el usuario administrador de CyberTechna Solutions. Desde aqui podras crear publicaciones y revisar contactos comerciales.') }}</p>
+                        <p class="section-copy mb-4">{{ __('Este acceso está pensado para el usuario administrador de CyberTechna Solutions. Desde aquí podrás crear publicaciones y revisar contactos comerciales.') }}</p>
 
                         <form method="POST" action="{{ route('login.store') }}">
                             @csrf
@@ -26,7 +26,7 @@
 
                             <div class="form-check mb-4">
                                 <input class="form-check-input" type="checkbox" value="1" id="remember" name="remember" @checked(old('remember'))>
-                                <label class="form-check-label" for="remember">{{ __('Mantener sesion iniciada') }}</label>
+                                <label class="form-check-label" for="remember">{{ __('Mantener sesión iniciada') }}</label>
                             </div>
 
                             <button type="submit" class="btn btn-owner w-100">{{ __('Entrar al panel') }}</button>

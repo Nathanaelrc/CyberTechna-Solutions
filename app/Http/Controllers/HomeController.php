@@ -135,80 +135,80 @@ class HomeController extends Controller
     {
         return [
             'metrics' => [
-                ['value' => '72h', 'label' => __('para iniciar auditorias criticas')],
-                ['value' => '24/7', 'label' => __('acompanamiento para incidentes prioritarios')],
-                ['value' => '1:1', 'label' => __('transferencia tecnica con tu equipo')],
+                ['value' => '72h', 'label' => __('para iniciar auditorías críticas')],
+                ['value' => '24/7', 'label' => __('acompañamiento para incidentes prioritarios')],
+                ['value' => '1:1', 'label' => __('transferencia técnica con tu equipo')],
             ],
             'auditBenefits' => [
-                __('Claridad sobre que riesgos son reales y cuales son solo ruido.'),
-                __('Priorizacion ejecutable para que el equipo no se disperse.'),
-                __('Evidencia util tanto para direccion como para tecnologia.'),
+                __('Claridad sobre qué riesgos son reales y cuáles son solo ruido.'),
+                __('Priorización ejecutable para que el equipo no se disperse.'),
+                __('Evidencia útil tanto para dirección como para tecnología.'),
                 __('Transferencia de criterio para que el aprendizaje quede instalado.'),
             ],
             'pentestScopes' => [
                 [
                     'title' => __('Aplicaciones web y APIs'),
-                    'summary' => __('Validamos fallos de autenticacion, autorizacion, exposicion de datos, inyecciones y errores de negocio.'),
+                    'summary' => __('Validamos fallos de autenticación, autorización, exposición de datos, inyecciones y errores de negocio.'),
                 ],
                 [
                     'title' => __('Infraestructura interna'),
                     'summary' => __('Analizamos movimiento lateral, privilegios, servicios inseguros y superficies que facilitan escalamiento.'),
                 ],
                 [
-                    'title' => __('Perimetro y activos expuestos'),
-                    'summary' => __('Revisamos lo que Internet puede ver y atacar: VPN, portales, correo, subdominios y configuraciones publicas.'),
+                    'title' => __('Perímetro y activos expuestos'),
+                    'summary' => __('Revisamos lo que Internet puede ver y atacar: VPN, portales, correo, subdominios y configuraciones públicas.'),
                 ],
             ],
             'methodSteps' => [
                 [
                     'title' => __('Descubrimiento y contexto'),
-                    'summary' => __('Entendemos activos, prioridades del negocio, amenazas mas probables y restricciones del entorno antes de ejecutar.'),
+                    'summary' => __('Entendemos activos, prioridades del negocio, amenazas más probables y restricciones del entorno antes de ejecutar.'),
                     'outputs' => [
-                        __('Levantamiento de alcance y activos criticos'),
+                        __('Levantamiento de alcance y activos críticos'),
                         __('Mapa inicial de riesgo y dependencias'),
                     ],
                 ],
                 [
-                    'title' => __('Evaluacion tecnica'),
+                    'title' => __('Evaluación técnica'),
                     'summary' => __('Auditamos o probamos de forma ofensiva el alcance acordado para convertir observaciones en evidencia concreta.'),
                     'outputs' => [
-                        __('Hallazgos tecnicos reproducibles'),
+                        __('Hallazgos técnicos reproducibles'),
                         __('Impacto vinculado a procesos y datos del negocio'),
                     ],
                 ],
                 [
-                    'title' => __('Priorizacion y plan'),
-                    'summary' => __('No dejamos una lista plana de vulnerabilidades: ordenamos por impacto, urgencia y costo de correccion.'),
+                    'title' => __('Priorización y plan'),
+                    'summary' => __('No dejamos una lista plana de vulnerabilidades: ordenamos por impacto, urgencia y costo de corrección.'),
                     'outputs' => [
                         __('Roadmap por quick wins y acciones estructurales'),
-                        __('Resumen ejecutivo y tecnico'),
+                        __('Resumen ejecutivo y técnico'),
                     ],
                 ],
                 [
                     'title' => __('Transferencia y seguimiento'),
-                    'summary' => __('Acompanamos sesiones de cierre, aclaramos hallazgos y damos contexto para que el equipo ejecute con autonomia.'),
+                    'summary' => __('Acompañamos sesiones de cierre, aclaramos hallazgos y damos contexto para que el equipo ejecute con autonomía.'),
                     'outputs' => [
                         __('Workshop de cierre con equipos clave'),
-                        __('Seguimiento opcional y revalidacion'),
+                        __('Seguimiento opcional y revalidación'),
                     ],
                 ],
             ],
             'methodPrinciples' => [
-                __('Trabajamos con evidencia primero y opiniones despues.'),
+                __('Trabajamos con evidencia primero y opiniones después.'),
                 __('Priorizamos por impacto de negocio, no solo por severidad CVSS.'),
-                __('Adaptamos el lenguaje para direccion, TI y desarrollo sin perder rigor.'),
-                __('Buscamos dejar criterio tecnico instalado en el cliente.'),
+                __('Adaptamos el lenguaje para dirección, TI y desarrollo sin perder rigor.'),
+                __('Buscamos dejar criterio técnico instalado en el cliente.'),
             ],
             'methodArtifacts' => [
-                __('Resumen ejecutivo para decision y presupuesto'),
-                __('Reporte tecnico detallado con evidencia'),
-                __('Matriz de priorizacion y plan de remediacion'),
-                __('Sesion de transferencia con responsables del alcance'),
+                __('Resumen ejecutivo para decisión y presupuesto'),
+                __('Reporte técnico detallado con evidencia'),
+                __('Matriz de priorización y plan de remediación'),
+                __('Sesión de transferencia con responsables del alcance'),
             ],
             'courseFormats' => [
                 [
                     'title' => __('Bootcamps intensivos'),
-                    'summary' => __('Jornadas concentradas para acelerar conocimiento en equipos tecnicos y no tecnicos.'),
+                    'summary' => __('Jornadas concentradas para acelerar conocimiento en equipos técnicos y no técnicos.'),
                 ],
                 [
                     'title' => __('Programas por niveles'),
@@ -216,14 +216,14 @@ class HomeController extends Controller
                 ],
                 [
                     'title' => __('Laboratorios y simulaciones'),
-                    'summary' => __('Practicas guiadas para llevar conceptos a escenarios reales y reforzar criterio operativo.'),
+                    'summary' => __('Prácticas guiadas para llevar conceptos a escenarios reales y reforzar criterio operativo.'),
                 ],
             ],
             'contactReasons' => [
-                __('Quieres una auditoria para entender brechas antes de una certificacion, cliente o comite.'),
-                __('Necesitas pentesting de una aplicacion, API, red interna o activo expuesto.'),
-                __('Buscas cursos a medida para equipos tecnicos, ejecutivos o usuarios finales.'),
-                __('Necesitas acompanamiento continuo para remediacion, hardening o incidentes.'),
+                __('Quieres una auditoría para entender brechas antes de una certificación, cliente o comité.'),
+                __('Necesitas pentesting de una aplicación, API, red interna o activo expuesto.'),
+                __('Buscas cursos a medida para equipos técnicos, ejecutivos o usuarios finales.'),
+                __('Necesitas acompañamiento continuo para remediación, hardening o incidentes.'),
             ],
         ];
     }

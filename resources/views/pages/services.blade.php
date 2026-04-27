@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('title', __('Servicios').' | CyberTechna Solutions')
-@section('meta_description', __('Auditorias de ciberseguridad, pentesting y acompanamiento continuo para convertir riesgos en planes de accion ejecutables.'))
+@section('meta_description', __('Auditorías de ciberseguridad, pentesting y acompañamiento continuo para convertir riesgos en planes de acción ejecutables.'))
 
 @section('content')
     @php($auditService = $services->firstWhere('slug', 'auditorias-de-ciberseguridad'))
@@ -11,12 +11,12 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
                     <span class="eyebrow">{{ __('Servicios') }}</span>
-                    <h1 class="hero-title">{{ __('Auditorias y servicios de ciberseguridad que explican el riesgo con claridad.') }}</h1>
-                    <p class="hero-copy mb-0">{{ __('En CyberTechna Solutions no nos quedamos en enumerar vulnerabilidades. Auditamos tecnologia, procesos y exposicion real para ayudarte a entender que afecta al negocio, que debe corregirse primero y como sostener la mejora.') }}</p>
+                    <h1 class="hero-title">{{ __('Auditorías y servicios de ciberseguridad que explican el riesgo con claridad.') }}</h1>
+                    <p class="hero-copy mb-0">{{ __('En CyberTechna Solutions no nos quedamos en enumerar vulnerabilidades. Auditamos tecnología, procesos y exposición real para ayudarte a entender qué afecta al negocio, qué debe corregirse primero y cómo sostener la mejora.') }}</p>
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-card">
-                        <div class="soft-label mb-3">{{ __('Cuando tiene sentido empezar por aqui') }}</div>
+                        <div class="soft-label mb-3">{{ __('Cuando tiene sentido empezar por aquí') }}</div>
                         <div class="status-line">
                             <span class="status-index">1</span>
                             <div>
@@ -28,14 +28,14 @@
                             <span class="status-index">2</span>
                             <div>
                                 <strong class="d-block text-white mb-1">{{ __('Quieres validar controles con evidencia') }}</strong>
-                                <span class="form-note">{{ __('Con pentesting y revisiones tecnicas reproducibles.') }}</span>
+                                <span class="form-note">{{ __('Con pentesting y revisiones técnicas reproducibles.') }}</span>
                             </div>
                         </div>
                         <div class="status-line">
                             <span class="status-index">3</span>
                             <div>
                                 <strong class="d-block text-white mb-1">{{ __('Tu equipo necesita criterio para ejecutar') }}</strong>
-                                <span class="form-note">{{ __('Con acompanamiento posterior y transferencia tecnica.') }}</span>
+                                <span class="form-note">{{ __('Con acompañamiento posterior y transferencia técnica.') }}</span>
                             </div>
                         </div>
                     </div>
@@ -49,10 +49,10 @@
             <div class="row g-4 align-items-end mb-4">
                 <div class="col-lg-7">
                     <div class="signal-bar"></div>
-                    <h2 class="section-heading">{{ __('Lineas de servicio') }}</h2>
+                    <h2 class="section-heading">{{ __('Líneas de servicio') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('Cada linea resuelve un tipo de necesidad distinto, pero todas comparten la misma logica: evidencia, priorizacion y acompanamiento.') }}</p>
+                    <p class="section-copy mb-0">{{ __('Cada línea resuelve un tipo de necesidad distinto, pero todas comparten la misma lógica: evidencia, priorización y acompañamiento.') }}</p>
                 </div>
             </div>
 
@@ -85,10 +85,10 @@
                 <div class="row g-4 align-items-end mb-4">
                     <div class="col-lg-7">
                         <div class="signal-bar"></div>
-                        <h2 class="section-heading">{{ __('Coberturas de auditoria que solemos ejecutar') }}</h2>
+                        <h2 class="section-heading">{{ __('Coberturas de auditoría que solemos ejecutar') }}</h2>
                     </div>
                     <div class="col-lg-5">
-                        <p class="section-copy mb-0">{{ __('La auditoria se adapta al activo y al objetivo del cliente. Estas son algunas variantes frecuentes dentro del alcance de ese servicio.') }}</p>
+                        <p class="section-copy mb-0">{{ __('La auditoría se adapta al activo y al objetivo del cliente. Estas son algunas variantes frecuentes dentro del alcance de ese servicio.') }}</p>
                     </div>
                 </div>
 
@@ -96,9 +96,9 @@
                     @foreach ($auditService->details ?? [] as $detail)
                         <div class="col-lg-6">
                             <div class="frame-card h-100">
-                                <div class="soft-label mb-2">{{ __('Auditoria') }} {{ $loop->iteration }}</div>
+                                <div class="soft-label mb-2">{{ __('Auditoría') }} {{ $loop->iteration }}</div>
                                 <h3 class="h4 text-white mb-3">{{ $detail }}</h3>
-                                <p class="card-copy mb-0">{{ __('Se define alcance, evidencia requerida, criticidad de hallazgos y plan de remediacion alineado a negocio y tecnologia.') }}</p>
+                                <p class="card-copy mb-0">{{ __('Se define alcance, evidencia requerida, criticidad de hallazgos y plan de remediación alineado a negocio y tecnología.') }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -112,9 +112,9 @@
             <div class="row g-4">
                 <div class="col-lg-5">
                     <div class="hero-card h-100">
-                        <div class="soft-label mb-3">{{ __('Pentesting y validacion ofensiva') }}</div>
-                        <h2 class="h3 text-white mb-3">{{ __('Probamos lo que un atacante intentaria explotar.') }}</h2>
-                        <p class="card-copy mb-0">{{ __('El pentesting complementa la auditoria: ayuda a confirmar si una debilidad es realmente explotable, que impacto tendria y que controles fallan en la practica.') }}</p>
+                        <div class="soft-label mb-3">{{ __('Pentesting y validación ofensiva') }}</div>
+                        <h2 class="h3 text-white mb-3">{{ __('Probamos lo que un atacante intentaría explotar.') }}</h2>
+                        <p class="card-copy mb-0">{{ __('El pentesting complementa la auditoría: ayuda a confirmar si una debilidad es realmente explotable, qué impacto tendría y qué controles fallan en la práctica.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -138,7 +138,7 @@
         <div class="container">
             <div class="owner-banner">
                 <div>
-                    <div class="soft-label mb-2">{{ __('Que obtienes al final') }}</div>
+                    <div class="soft-label mb-2">{{ __('Qué obtienes al final') }}</div>
                     <ul class="mb-0 ps-3">
                         @foreach ($auditBenefits as $benefit)
                             <li>{{ $benefit }}</li>

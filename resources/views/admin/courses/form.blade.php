@@ -21,7 +21,7 @@
     <div class="col-12 d-flex justify-content-between align-items-center gap-3 flex-wrap">
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">ES / EN</div>
-            <h2 class="h4 text-white mb-0">Curso bilingue</h2>
+            <h2 class="h4 text-white mb-0">Curso bilingüe</h2>
         </div>
         <span class="badge text-bg-secondary rounded-pill px-3 py-2">Base: ES, apoyo: EN</span>
     </div>
@@ -35,7 +35,7 @@
 
             <div class="d-grid gap-3">
                 <div>
-                    <label for="title_es" class="form-label">Titulo</label>
+                    <label for="title_es" class="form-label">Título</label>
                     <input type="text" class="form-control" id="title_es" name="title_es" value="{{ $titleEs }}" maxlength="160" required>
                 </div>
 
@@ -45,7 +45,7 @@
                 </div>
 
                 <div>
-                    <label for="description_es" class="form-label">Descripcion</label>
+                    <label for="description_es" class="form-label">Descripción</label>
                     <textarea class="form-control" id="description_es" name="description_es" rows="8" required>{{ $descriptionEs }}</textarea>
                 </div>
 
@@ -55,13 +55,13 @@
                 </div>
 
                 <div>
-                    <label for="duration_es" class="form-label">Duracion</label>
+                    <label for="duration_es" class="form-label">Duración</label>
                     <input type="text" class="form-control" id="duration_es" name="duration_es" value="{{ $durationEs }}" maxlength="120" required>
                 </div>
 
                 <div>
                     <label for="topics_es" class="form-label">Temas</label>
-                    <textarea class="form-control" id="topics_es" name="topics_es" rows="8" placeholder="Un tema por linea" required>{{ $topicsEs }}</textarea>
+                    <textarea class="form-control" id="topics_es" name="topics_es" rows="8" placeholder="Un tema por línea" required>{{ $topicsEs }}</textarea>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
 </div>
 
 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mt-4">
-    <span class="muted">Los cursos publicados aparecen en la pagina de cursos y en su pagina individual.</span>
+    <span class="muted">Los cursos publicados aparecen en la página de cursos y en su página individual.</span>
     <div class="d-flex gap-2 flex-wrap">
         <a href="{{ route('admin.courses.index') }}" class="btn btn-outline-light rounded-pill px-4">Cancelar</a>
         @if ($course->exists)

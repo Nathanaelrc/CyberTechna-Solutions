@@ -9,12 +9,12 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
-                    <span class="eyebrow">{{ __('Ciberseguridad con foco en ejecucion') }}</span>
+                    <span class="eyebrow">{{ __('Ciberseguridad con foco en ejecución') }}</span>
                     <h1 class="hero-title">{{ __('Auditamos, explicamos el riesgo y ayudamos a corregirlo sin perder foco de negocio.') }}</h1>
-                    <p class="hero-copy mb-4">{{ __('CyberTechna Solutions acompana a empresas que necesitan entender su exposicion real, priorizar remediaciones y fortalecer equipos a traves de auditorias, pentesting y formacion especializada.') }}</p>
+                    <p class="hero-copy mb-4">{{ __('CyberTechna Solutions acompaña a empresas que necesitan entender su exposición real, priorizar remediaciones y fortalecer equipos a través de auditorías, pentesting y formación especializada.') }}</p>
 
                     <div class="hero-actions">
-                        <a href="{{ route('contact') }}" class="btn btn-signal btn-lg">{{ __('Solicitar evaluacion') }}</a>
+                        <a href="{{ route('contact') }}" class="btn btn-signal btn-lg">{{ __('Solicitar evaluación') }}</a>
                         <a href="{{ route('services') }}" class="btn btn-ghost btn-lg">{{ __('Explorar servicios') }}</a>
                     </div>
 
@@ -32,8 +32,8 @@
                             <div class="owner-banner mt-4">
                                 <div>
                                     <div class="soft-label mb-2">{{ __('Zona del propietario') }}</div>
-                                    <strong class="d-block text-white mb-1">{{ __('Tu panel privado ya esta integrado al sitio.') }}</strong>
-                                    <span class="form-note">{{ __('Desde ahi podras publicar insights, revisar mensajes y mantener visible solo lo que es para ti.') }}</span>
+                                    <strong class="d-block text-white mb-1">{{ __('Tu panel privado ya está integrado al sitio.') }}</strong>
+                                    <span class="form-note">{{ __('Desde ahí podrás publicar insights, revisar mensajes y mantener visible solo lo que es para ti.') }}</span>
                                 </div>
                                 <a href="{{ route('admin.dashboard') }}" class="btn btn-owner">{{ __('Ir al panel') }}</a>
                             </div>
@@ -44,7 +44,7 @@
                 <div class="col-lg-5">
                     <div class="hero-card">
                         <div class="soft-label mb-3">{{ __('Lo esencial') }}</div>
-                        <h2 class="h3 text-white mb-4">{{ __('Una entrada simple para decidir por donde empezar.') }}</h2>
+                        <h2 class="h3 text-white mb-4">{{ __('Una entrada simple para decidir por dónde empezar.') }}</h2>
 
                         <div class="hero-grid">
                             @foreach ($methodSteps as $step)
@@ -60,7 +60,7 @@
 
                         <div class="frame-card mt-4 mb-0">
                             <div class="soft-label mb-2">{{ __('Siguiente paso') }}</div>
-                            <p class="card-copy mb-3">{{ __('Si ya sabes que necesitas una auditoria, una prueba ofensiva o capacitacion, entra a la seccion correspondiente y revisa el detalle del servicio.') }}</p>
+                            <p class="card-copy mb-3">{{ __('Si ya sabes que necesitas una auditoría, una prueba ofensiva o capacitación, entra a la sección correspondiente y revisa el detalle del servicio.') }}</p>
                             <div class="d-flex flex-wrap gap-2">
                                 <a href="{{ route('services') }}" class="btn btn-ghost">{{ __('Servicios') }}</a>
                                 <a href="{{ route('courses') }}" class="btn btn-ghost">{{ __('Cursos') }}</a>
@@ -80,7 +80,7 @@
                     <h2 class="section-heading">{{ __('Cuatro formas claras de trabajar con nosotros.') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('La home concentra lo relevante. El detalle tecnico y comercial ahora vive en paginas dedicadas para que cada servicio pueda explicarse con mas profundidad.') }}</p>
+                    <p class="section-copy mb-0">{{ __('La home concentra lo relevante. El detalle técnico y comercial ahora vive en páginas dedicadas para que cada servicio pueda explicarse con más profundidad.') }}</p>
                 </div>
             </div>
 
@@ -111,9 +111,9 @@
             <div class="row g-4">
                 <div class="col-lg-5">
                     <div class="signal-bar"></div>
-                    <h2 class="section-heading">{{ __('Auditorias pensadas para explicar el riesgo, no solo enumerarlo.') }}</h2>
-                    <p class="section-copy">{{ __('El servicio de auditoria puede aterrizarse sobre madurez, infraestructura, nube, aplicaciones o seguridad de la informacion. Estas son algunas coberturas habituales.') }}</p>
-                    <a href="{{ route('services') }}" class="btn btn-signal mt-3">{{ __('Ver auditorias') }}</a>
+                    <h2 class="section-heading">{{ __('Auditorías pensadas para explicar el riesgo, no solo enumerarlo.') }}</h2>
+                    <p class="section-copy">{{ __('El servicio de auditoría puede aterrizarse sobre madurez, infraestructura, nube, aplicaciones o seguridad de la información. Estas son algunas coberturas habituales.') }}</p>
+                    <a href="{{ route('services') }}" class="btn btn-signal mt-3">{{ __('Ver auditorías') }}</a>
                 </div>
 
                 <div class="col-lg-7">
@@ -121,9 +121,9 @@
                         @foreach (array_slice($auditService?->details ?? [], 0, 3) as $detail)
                             <div class="col-md-4">
                                 <div class="frame-card h-100">
-                                    <div class="soft-label mb-2">{{ __('Auditoria') }} {{ $loop->iteration }}</div>
+                                    <div class="soft-label mb-2">{{ __('Auditoría') }} {{ $loop->iteration }}</div>
                                     <h3 class="h5 text-white">{{ $detail }}</h3>
-                                    <p class="card-copy mb-0">{{ __('En la pagina de detalle se explica alcance, entregables y como se traduce a un plan de accion priorizado.') }}</p>
+                                    <p class="card-copy mb-0">{{ __('En la página de detalle se explica alcance, entregables y cómo se traduce a un plan de acción priorizado.') }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -141,7 +141,7 @@
                     <h2 class="section-heading">{{ __('Cursos que van desde lo introductorio hasta lo ofensivo.') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('Abrimos una pagina exclusiva para cursos para explicar temarios, audiencias y profundidad. Estos son algunos de los programas base.') }}</p>
+                    <p class="section-copy mb-0">{{ __('Abrimos una página exclusiva para cursos para explicar temarios, audiencias y profundidad. Estos son algunos de los programas base.') }}</p>
                 </div>
             </div>
 
@@ -162,7 +162,7 @@
             </div>
 
             <div class="mt-4">
-                <a href="{{ route('courses') }}" class="btn btn-ghost">{{ __('Explorar catalogo completo') }}</a>
+                <a href="{{ route('courses') }}" class="btn btn-ghost">{{ __('Explorar catálogo completo') }}</a>
             </div>
         </div>
     </section>
@@ -172,10 +172,10 @@
             <div class="row g-4 align-items-end mb-4">
                 <div class="col-lg-7">
                     <div class="signal-bar"></div>
-                    <h2 class="section-heading">{{ __('Insights y comunicados para tus clientes.') }}</h2>
+                    <h2 class="section-heading">{{ __('Insights, alertas y comunicados.') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('Esta seccion se alimenta desde tu panel privado. Puedes publicar hallazgos, alertas, casos o anuncios comerciales.') }}</p>
+                    <p class="section-copy mb-0">{{ __('Aquí compartimos hallazgos, alertas, aprendizajes y novedades de servicio para equipos que quieren mejorar su postura con criterio.') }}</p>
                 </div>
             </div>
 
@@ -192,9 +192,9 @@
                 @empty
                     <div class="col-12">
                         <div class="frame-card">
-                            <div class="soft-label mb-2">{{ __('Sin publicaciones aun') }}</div>
-                            <p class="card-copy mb-3">{{ __('Cuando entres al panel privado podras crear tus primeros insights para mostrar novedades, aprendizajes o avisos de servicio.') }}</p>
-                            <a href="{{ route('login') }}" class="btn btn-owner">{{ __('Entrar al panel') }}</a>
+                            <div class="soft-label mb-2">{{ __('Publicaciones en preparación') }}</div>
+                            <p class="card-copy mb-3">{{ __('Estamos preparando insights para compartir alertas, aprendizajes y novedades relevantes sobre auditoría, pentesting y formación.') }}</p>
+                            <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Ir a contacto') }}</a>
                         </div>
                     </div>
                 @endforelse
@@ -208,8 +208,8 @@
                 <div class="col-lg-8">
                     <div class="frame-card h-100">
                         <div class="signal-bar"></div>
-                        <h2 class="section-heading mb-3">{{ __('El detalle ahora esta donde corresponde.') }}</h2>
-                        <p class="section-copy mb-0">{{ __('La home se queda con el mensaje principal y el acceso rapido. Si quieres revisar con calma las auditorias, el metodo, el catalogo de cursos o hablar de tu caso, ahora cada tema tiene su propia pagina.') }}</p>
+                        <h2 class="section-heading mb-3">{{ __('Seguridad con criterio, no solo con checklists.') }}</h2>
+                        <p class="section-copy mb-0">{{ __('Cada servicio combina evidencia técnica, priorización y acompañamiento para traducir la seguridad en decisiones claras, mejoras ejecutables y confianza para clientes y equipos.') }}</p>
                     </div>
                 </div>
 
@@ -217,8 +217,8 @@
                     <div class="owner-banner h-100">
                         <div>
                             <div class="soft-label mb-2">{{ __('Contacto directo') }}</div>
-                            <strong class="d-block text-white mb-2">{{ __('Cuentanos tu necesidad y te proponemos un alcance.') }}</strong>
-                            <span class="form-note">{{ __('Desde auditorias hasta formacion interna, la ruta mas directa ahora vive en la pagina de contacto.') }}</span>
+                            <strong class="d-block text-white mb-2">{{ __('Cuéntanos tu necesidad y te proponemos un alcance.') }}</strong>
+                            <span class="form-note">{{ __('Desde auditorías hasta formación interna, la ruta más directa ahora vive en la página de contacto.') }}</span>
                         </div>
                         <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Ir a contacto') }}</a>
                     </div>

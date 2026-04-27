@@ -7,7 +7,7 @@
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">Contenido comercial</div>
             <h1 class="display-6 text-white mb-2">Servicios del sitio</h1>
-            <p class="muted mb-0">Administra las paginas individuales de servicios y su orden dentro del sitio.</p>
+            <p class="muted mb-0">Administra las páginas individuales de servicios y su orden dentro del sitio.</p>
         </div>
         <a href="{{ route('admin.services.create') }}" class="btn btn-admin">Crear servicio</a>
     </div>
@@ -17,7 +17,7 @@
             <table class="table align-middle mb-0">
                 <thead>
                     <tr>
-                        <th>Titulo</th>
+                        <th>Título</th>
                         <th>Estado</th>
                         <th>Orden</th>
                         <th class="text-end">Acciones</th>
@@ -36,7 +36,7 @@
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('services.show', $service) }}" class="btn btn-sm btn-outline-light rounded-pill px-3" target="_blank" rel="noreferrer">Ver</a>
                                     <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Editar</a>
-                                    <form method="POST" action="{{ route('admin.services.destroy', $service) }}" onsubmit="return confirm('Se eliminara este servicio. Continuar?');">
+                                    <form method="POST" action="{{ route('admin.services.destroy', $service) }}" onsubmit="return confirm('Se eliminará este servicio. ¿Continuar?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3">Eliminar</button>
@@ -46,7 +46,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="muted">Todavia no has creado servicios.</td>
+                            <td colspan="4" class="muted">Todavía no has creado servicios.</td>
                         </tr>
                     @endforelse
                 </tbody>

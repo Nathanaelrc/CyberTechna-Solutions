@@ -1,22 +1,22 @@
 @extends('layouts.site')
 
-@section('title', __('Metodo').' | CyberTechna Solutions')
-@section('meta_description', __('Conoce el metodo de trabajo de CyberTechna Solutions para auditorias, pentesting, priorizacion y transferencia tecnica.'))
+@section('title', __('Método').' | CyberTechna Solutions')
+@section('meta_description', __('Conoce el método de trabajo de CyberTechna Solutions para auditorías, pentesting, priorización y transferencia técnica.'))
 
 @section('content')
     <section class="section-space pb-4">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
-                    <span class="eyebrow">{{ __('Metodo') }}</span>
+                    <span class="eyebrow">{{ __('Método') }}</span>
                     <h1 class="hero-title">{{ __('Trabajamos para que la seguridad se entienda, se priorice y se ejecute.') }}</h1>
-                    <p class="hero-copy mb-0">{{ __('Nuestro metodo combina lectura ejecutiva, evidencia tecnica y acompanamiento operativo. La idea no es entregar un PDF bonito, sino ayudarte a tomar decisiones y darle traccion a la remediacion.') }}</p>
+                    <p class="hero-copy mb-0">{{ __('Nuestro método combina lectura ejecutiva, evidencia técnica y acompañamiento operativo. La idea no es entregar un PDF bonito, sino ayudarte a tomar decisiones y darle tracción a la remediación.') }}</p>
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-card">
                         <div class="soft-label mb-3">{{ __('Principio rector') }}</div>
                         <h2 class="h3 text-white mb-3">{{ __('Cada hallazgo debe responder una pregunta de negocio.') }}</h2>
-                        <p class="card-copy mb-0">{{ __('Que riesgo representa, que tan explotable es, que afecta, que prioridad merece y que necesita el equipo para corregirlo.') }}</p>
+                        <p class="card-copy mb-0">{{ __('Qué riesgo representa, qué tan explotable es, qué afecta, qué prioridad merece y qué necesita el equipo para corregirlo.') }}</p>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <h2 class="section-heading">{{ __('Fases del trabajo') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('Ajustamos profundidad y alcance segun el contexto, pero mantenemos una secuencia consistente para que el resultado sea util y comparable.') }}</p>
+                    <p class="section-copy mb-0">{{ __('Ajustamos profundidad y alcance según el contexto, pero mantenemos una secuencia consistente para que el resultado sea útil y comparable.') }}</p>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
             <div class="row g-4">
                 <div class="col-lg-6">
                     <div class="hero-card h-100">
-                        <div class="soft-label mb-3">{{ __('Como colaboramos') }}</div>
+                        <div class="soft-label mb-3">{{ __('Cómo colaboramos') }}</div>
                         <h2 class="h3 text-white mb-3">{{ __('Principios de trabajo') }}</h2>
                         <ul class="mb-0 ps-3">
                             @foreach ($methodPrinciples as $principle)
@@ -88,8 +88,8 @@
             <div class="owner-banner">
                 <div>
                     <div class="soft-label mb-2">{{ __('Siguiente paso') }}</div>
-                    <strong class="d-block text-white mb-2">{{ __('Si quieres aplicar este metodo a tu entorno, definimos alcance y arrancamos con visibilidad real.') }}</strong>
-                    <span class="form-note">{{ __('El detalle del tipo de auditoria o prueba se adapta a la necesidad del activo y del equipo.') }}</span>
+                    <strong class="d-block text-white mb-2">{{ __('Si quieres aplicar este método a tu entorno, definimos alcance y arrancamos con visibilidad real.') }}</strong>
+                    <span class="form-note">{{ __('El detalle del tipo de auditoría o prueba se adapta a la necesidad del activo y del equipo.') }}</span>
                 </div>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="{{ route('services') }}" class="btn btn-ghost">{{ __('Ver servicios') }}</a>

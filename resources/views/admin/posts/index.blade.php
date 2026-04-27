@@ -7,9 +7,9 @@
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">{{ __('Contenido') }}</div>
             <h1 class="display-6 text-white mb-2">{{ __('Publicaciones del sitio') }}</h1>
-            <p class="muted mb-0">{{ __('Administra los insights visibles al publico y los borradores internos.') }}</p>
+            <p class="muted mb-0">{{ __('Administra los insights visibles al público y los borradores internos.') }}</p>
         </div>
-        <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">{{ __('Crear publicacion') }}</a>
+        <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">{{ __('Crear publicación') }}</a>
     </div>
 
     <div class="table-shell">
@@ -17,7 +17,7 @@
             <table class="table align-middle mb-0">
                 <thead>
                     <tr>
-                        <th>{{ __('Titulo') }}</th>
+                        <th>{{ __('Título') }}</th>
                         <th>{{ __('Estado') }}</th>
                         <th>{{ __('Autor') }}</th>
                         <th>{{ __('Fecha') }}</th>
@@ -37,7 +37,7 @@
                             <td>
                                 <div class="d-flex justify-content-end gap-2">
                                     <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Editar') }}</a>
-                                    <form method="POST" action="{{ route('admin.posts.destroy', $post) }}" onsubmit="return confirm('{{ __('Se eliminara esta publicacion. Continuar?') }}');">
+                                    <form method="POST" action="{{ route('admin.posts.destroy', $post) }}" onsubmit="return confirm('{{ __('Se eliminará esta publicación. ¿Continuar?') }}');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3">{{ __('Eliminar') }}</button>
@@ -47,7 +47,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="muted">{{ __('Todavia no has creado publicaciones.') }}</td>
+                            <td colspan="5" class="muted">{{ __('Todavía no hay publicaciones creadas.') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

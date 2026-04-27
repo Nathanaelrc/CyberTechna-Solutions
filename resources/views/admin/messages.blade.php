@@ -7,7 +7,7 @@
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">{{ __('Bandeja comercial') }}</div>
             <h1 class="display-6 text-white mb-2">{{ __('Mensajes recibidos') }}</h1>
-            <p class="muted mb-0">{{ __('Cada solicitud enviada desde la landing aparece aqui para que puedas hacer seguimiento.') }}</p>
+            <p class="muted mb-0">{{ __('Cada solicitud enviada desde la landing aparece aquí para que puedas hacer seguimiento.') }}</p>
         </div>
         <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light rounded-pill px-4">{{ __('Volver al dashboard') }}</a>
     </div>
@@ -42,7 +42,7 @@
                 @endif
             </article>
         @empty
-            <div class="admin-card muted">{{ __('No hay mensajes registrados todavia.') }}</div>
+            <div class="admin-card muted">{{ __('No hay mensajes registrados todavía.') }}</div>
         @endforelse
     </div>
 

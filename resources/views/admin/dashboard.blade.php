@@ -7,12 +7,12 @@
         <div>
             <div class="text-uppercase muted small fw-bold mb-2">{{ __('Resumen operativo') }}</div>
             <h1 class="display-6 text-white mb-2">{{ __('Panel del propietario') }}</h1>
-            <p class="muted mb-0">{{ __('Controla servicios, cursos, publicaciones y contactos desde un unico lugar.') }}</p>
+            <p class="muted mb-0">{{ __('Controla servicios, cursos, publicaciones y contactos desde un único lugar.') }}</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
             <a href="{{ route('admin.services.create') }}" class="btn btn-admin">{{ __('Nuevo servicio') }}</a>
             <a href="{{ route('admin.courses.create') }}" class="btn btn-signal-soft">{{ __('Nuevo curso') }}</a>
-            <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">{{ __('Nueva publicacion') }}</a>
+            <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">{{ __('Nueva publicación') }}</a>
             <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-light rounded-pill px-4">{{ __('Ver mensajes') }}</a>
         </div>
     </div>
@@ -68,10 +68,10 @@
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr>
-                                <th>{{ __('Titulo') }}</th>
+                                <th>{{ __('Título') }}</th>
                                 <th>{{ __('Estado') }}</th>
                                 <th>{{ __('Actualizado') }}</th>
-                                <th class="text-end">{{ __('Accion') }}</th>
+                                <th class="text-end">{{ __('Acción') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,7 +87,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="muted">{{ __('Todavia no hay publicaciones creadas.') }}</td>
+                                    <td colspan="4" class="muted">{{ __('Todavía no hay publicaciones creadas.') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -113,7 +113,7 @@
                                     <div class="muted">{{ $service->excerpt }}</div>
                                 </div>
                             @empty
-                                <div class="muted">{{ __('Aun no hay servicios creados.') }}</div>
+                                <div class="muted">{{ __('Aún no hay servicios creados.') }}</div>
                             @endforelse
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                                     <div class="muted">{{ $course->duration }} | {{ $course->audience }}</div>
                                 </div>
                             @empty
-                                <div class="muted">{{ __('Aun no hay cursos creados.') }}</div>
+                                <div class="muted">{{ __('Aún no hay cursos creados.') }}</div>
                             @endforelse
                         </div>
                     </div>
@@ -143,7 +143,7 @@
         <div class="col-12">
             <div class="admin-card h-100">
                 <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                    <h2 class="h4 text-white mb-0">{{ __('Ultimos mensajes') }}</h2>
+                    <h2 class="h4 text-white mb-0">{{ __('Últimos mensajes') }}</h2>
                     <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-outline-light rounded-pill px-3">{{ __('Abrir bandeja') }}</a>
                 </div>
 
@@ -158,7 +158,7 @@
                             <p class="muted mb-0">{{ \Illuminate\Support\Str::limit($message->message, 120) }}</p>
                         </div>
                     @empty
-                        <div class="muted">{{ __('Aun no has recibido mensajes desde el formulario.') }}</div>
+                        <div class="muted">{{ __('Aún no has recibido mensajes desde el formulario.') }}</div>
                     @endforelse
                 </div>
             </div>

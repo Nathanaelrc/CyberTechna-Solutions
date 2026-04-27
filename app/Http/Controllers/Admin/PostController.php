@@ -44,7 +44,7 @@ class PostController extends Controller
 
         Post::create($payload);
 
-        return redirect()->route('admin.posts.index')->with('status', __('Publicacion creada correctamente.'));
+        return redirect()->route('admin.posts.index')->with('status', __('Publicación creada correctamente.'));
     }
 
     public function edit(Post $post): View
@@ -65,14 +65,14 @@ class PostController extends Controller
 
         $post->update($payload);
 
-        return redirect()->route('admin.posts.index')->with('status', __('Publicacion actualizada.'));
+        return redirect()->route('admin.posts.index')->with('status', __('Publicación actualizada.'));
     }
 
     public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('status', __('Publicacion eliminada.'));
+        return redirect()->route('admin.posts.index')->with('status', __('Publicación eliminada.'));
     }
 
     private function validatedData(Request $request, ?Post $post = null): array
