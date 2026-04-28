@@ -17,6 +17,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY composer.json composer.lock /var/www/html/
+RUN composer install --no-interaction --prefer-dist --no-scripts
+
 COPY . /var/www/html
 COPY docker/php/entrypoint.sh /usr/local/bin/entrypoint
 

@@ -37,19 +37,29 @@
 
             <div class="row g-4">
                 @foreach ($courses as $course)
+                    @php($nextSession = $course->nextSessionLocal())
                     <div class="col-lg-6">
                         <div class="service-card h-100">
                             <div class="soft-label mb-2">{{ __('Curso') }} {{ $loop->iteration }}</div>
                             <h3 class="h4 text-white mb-3">{{ $course->title }}</h3>
                             <p class="card-copy mb-3">{{ $course->description }}</p>
+                            <div class="form-note mb-2">{{ $course->deliveryModeLabel() }}@if ($course->meetingProviderLabel()) | {{ $course->meetingProviderLabel() }}@endif</div>
+                            @if ($nextSession)
+                                <div class="form-note mb-3">{{ __('Próxima edición') }}: {{ $nextSession->format('d/m/Y H:i') }} {{ $course->session_timezone }}</div>
+                            @else
+                                <div class="form-note mb-3">{{ __('Formato a medida') }}</div>
+                            @endif
                             <div class="form-note mb-3">{{ $course->duration }} | {{ $course->audience }}</div>
                             <ul class="mb-0">
                                 @foreach ($course->topics ?? [] as $topic)
                                     <li>{{ $topic }}</li>
                                 @endforeach
                             </ul>
-                            <div class="mt-4">
+                            <div class="mt-4 d-flex flex-wrap gap-2">
                                 <a href="{{ route('courses.show', $course) }}" class="btn btn-ghost">{{ __('Abrir curso') }}</a>
+                                @if ($course->registration_url)
+                                    <a href="{{ $course->registration_url }}" class="btn btn-signal" target="_blank" rel="noreferrer">{{ __('Reservar cupo') }}</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -79,8 +89,8 @@
             <div class="owner-banner">
                 <div>
                     <div class="soft-label mb-2">{{ __('Capacitación a medida') }}</div>
-                    <strong class="d-block text-white mb-2">{{ __('Podemos adaptar el temario al nivel técnico, al área y al objetivo del cliente.') }}</strong>
-                    <span class="form-note">{{ __('Esto incluye sensibilización general, perfiles ejecutivos, blue team, desarrollo seguro y prácticas ofensivas controladas.') }}</span>
+                    <strong class="d-block text-white mb-2">{{ __('Podemos adaptar el temario, la modalidad y la herramienta de clase al nivel técnico y al objetivo del cliente.') }}</strong>
+                    <span class="form-note">{{ __('Esto incluye cohortes remotas, híbridas o presenciales, además de registro externo y operación por Google Meet cuando el programa lo requiera.') }}</span>
                 </div>
                 <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Solicitar plan formativo') }}</a>
             </div>

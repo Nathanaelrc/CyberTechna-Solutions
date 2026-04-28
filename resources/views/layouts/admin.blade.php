@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title', 'Panel | CyberTechna Solutions')</title>
+        <link rel="icon" type="image/svg+xml" href="{{ asset('brand/cybertechna-favicon.svg') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('brand/cybertechna-favicon-32.png') }}">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <meta name="theme-color" content="#07111a">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,12 +50,39 @@
             }
 
             .admin-brand {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.8rem;
                 color: #fff;
                 font-weight: 700;
             }
 
             .admin-brand:hover {
                 color: #fff;
+            }
+
+            .admin-brand-mark {
+                width: 2.65rem;
+                height: 2.65rem;
+                object-fit: cover;
+                border-radius: 0.95rem;
+                flex: 0 0 auto;
+                box-shadow: 0 16px 30px rgba(1, 7, 16, 0.32);
+            }
+
+            .admin-brand-text {
+                display: inline-flex;
+                flex-direction: column;
+                line-height: 1.02;
+            }
+
+            .admin-brand-text small {
+                font-family: 'Manrope', sans-serif;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--admin-muted);
             }
 
             .admin-shell {
@@ -163,7 +194,13 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark admin-nav py-3">
             <div class="container">
-                <a class="navbar-brand admin-brand" href="{{ route('admin.dashboard') }}">CyberTechna Solutions | Panel</a>
+                <a class="navbar-brand admin-brand" href="{{ route('admin.dashboard') }}">
+                    <img src="{{ asset('brand/cybertechna-mark.svg') }}" alt="CyberTechna Solutions" class="admin-brand-mark">
+                    <span class="admin-brand-text">
+                        <span>CyberTechna Solutions</span>
+                        <small>Panel</small>
+                    </span>
+                </a>
 
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav" aria-controls="adminNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -175,6 +212,7 @@
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}" href="{{ route('admin.services.index') }}">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.courses.*') ? 'active' : '' }}" href="{{ route('admin.courses.index') }}">Cursos</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">Publicaciones</a></li>
+                        <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}" href="{{ route('admin.messages.index') }}">Mensajes</a></li>
                         <li class="nav-item"><a class="nav-link admin-link" href="{{ route('home') }}" target="_blank" rel="noreferrer">Ver sitio</a></li>
                     </ul>

@@ -15,6 +15,14 @@
     $durationEn = old('duration_en', data_get($translations, 'en.duration', ''));
     $topicsEs = old('topics_es', implode("\n", data_get($translations, 'es.topics', $topicsFallback)));
     $topicsEn = old('topics_en', implode("\n", data_get($translations, 'en.topics', [])));
+    $deliveryMode = old('delivery_mode', $course->delivery_mode ?? 'remote');
+    $meetingProvider = old('meeting_provider', $course->meeting_provider ?? 'none');
+    $nextSessionAt = old('next_session_at', $course->nextSessionLocal()?->format('Y-m-d\TH:i'));
+    $sessionTimezone = old('session_timezone', $course->session_timezone ?? config('services.google.meet_timezone', 'UTC'));
+    $sessionLengthMinutes = old('session_length_minutes', $course->session_length_minutes ?? 90);
+    $registrationUrl = old('registration_url', $course->registration_url);
+    $googleMeetUrl = data_get($course->googleMeetData(), 'meet_url');
+    $googleEventId = data_get($course->googleMeetData(), 'event_id');
 @endphp
 
 <div class="row g-4">
@@ -120,10 +128,102 @@
         <label for="sort_order" class="form-label">Orden</label>
         <input type="number" class="form-control" id="sort_order" name="sort_order" min="0" max="9999" value="{{ old('sort_order', $course->sort_order ?? 0) }}" required>
     </div>
+
+    <div class="col-12">
+        <div class="admin-card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mb-3">
+                <div>
+                    <div class="text-uppercase muted small fw-bold mb-2">Operación</div>
+                    <h3 class="h5 text-white mb-0">Clases, registro e integraciones</h3>
+                </div>
+                <span class="badge text-bg-dark rounded-pill px-3 py-2">Google Meet y herramientas externas</span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="delivery_mode" class="form-label">Modalidad</label>
+                    <select class="form-select" id="delivery_mode" name="delivery_mode" required>
+                        <option value="remote" @selected($deliveryMode === 'remote')>Remoto en vivo</option>
+                        <option value="hybrid" @selected($deliveryMode === 'hybrid')>Híbrido</option>
+                        <option value="onsite" @selected($deliveryMode === 'onsite')>Presencial</option>
+                        <option value="custom" @selected($deliveryMode === 'custom')>A medida</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="meeting_provider" class="form-label">Herramienta principal</label>
+                    <select class="form-select" id="meeting_provider" name="meeting_provider" required>
+                        <option value="none" @selected($meetingProvider === 'none')>Sin herramienta fija</option>
+                        <option value="google_meet" @selected($meetingProvider === 'google_meet')>Google Meet</option>
+                        <option value="zoom" @selected($meetingProvider === 'zoom')>Zoom</option>
+                        <option value="teams" @selected($meetingProvider === 'teams')>Microsoft Teams</option>
+                        <option value="custom" @selected($meetingProvider === 'custom')>Herramienta del cliente</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="session_length_minutes" class="form-label">Duración operativa</label>
+                    <input type="number" class="form-control" id="session_length_minutes" name="session_length_minutes" min="30" max="720" value="{{ $sessionLengthMinutes }}" placeholder="90">
+                </div>
+
+                <div class="col-md-5">
+                    <label for="next_session_at" class="form-label">Próxima edición</label>
+                    <input type="datetime-local" class="form-control" id="next_session_at" name="next_session_at" value="{{ $nextSessionAt }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="session_timezone" class="form-label">Zona horaria</label>
+                    <input type="text" class="form-control" id="session_timezone" name="session_timezone" value="{{ $sessionTimezone }}" placeholder="UTC">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="registration_url" class="form-label">URL de registro o reserva</label>
+                    <input type="url" class="form-control" id="registration_url" name="registration_url" value="{{ $registrationUrl }}" placeholder="https://...">
+                </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-top border-secondary-subtle">
+                <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-center gap-3">
+                    <div>
+                        <div class="text-uppercase muted small fw-bold mb-2">Google Meet</div>
+                        <p class="muted mb-0">Si configuras credenciales de Google Calendar puedes generar el enlace Meet desde aquí y seguir usando este bloque para otras herramientas más adelante.</p>
+                    </div>
+
+                    @if ($course->exists)
+                        @if ($googleMeetConfigured)
+                            <form method="POST" action="{{ route('admin.courses.google-meet', $course) }}">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-signal-soft">Generar enlace Google Meet</button>
+                            </form>
+                        @else
+                            <span class="muted small">Faltan GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN o GOOGLE_CALENDAR_ID en el entorno.</span>
+                        @endif
+                    @else
+                        <span class="muted small">Guarda el curso primero para generar su enlace de Google Meet.</span>
+                    @endif
+                </div>
+
+                @if ($googleMeetUrl)
+                    <div class="row g-3 mt-1">
+                        <div class="col-lg-8">
+                            <label for="google_meet_url" class="form-label mt-3">Enlace Meet generado</label>
+                            <input type="url" class="form-control" id="google_meet_url" value="{{ $googleMeetUrl }}" readonly>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label for="google_event_id" class="form-label mt-3">Google Event ID</label>
+                            <input type="text" class="form-control" id="google_event_id" value="{{ $googleEventId }}" readonly>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mt-4">
-    <span class="muted">Los cursos publicados aparecen en la página de cursos y en su página individual.</span>
+    <span class="muted">Los cursos publicados aparecen en la página de cursos, su página individual y pueden mostrar próxima edición, modalidad e integración operativa.</span>
     <div class="d-flex gap-2 flex-wrap">
         <a href="{{ route('admin.courses.index') }}" class="btn btn-outline-light rounded-pill px-4">Cancelar</a>
         @if ($course->exists)

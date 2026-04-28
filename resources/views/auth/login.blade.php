@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', __('Acceso propietario').' | CyberTechna Solutions')
+@section('title', __('Iniciar sesión').' | CyberTechna Solutions')
 
 @section('content')
     <section class="section-space">
@@ -8,9 +8,13 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-8">
                     <div class="frame-card">
-                        <span class="eyebrow">{{ __('Acceso propietario') }}</span>
-                        <h1 class="h2 text-white mt-3 mb-3">{{ __('Entra a tu panel privado para publicar y gestionar el sitio.') }}</h1>
-                        <p class="section-copy mb-4">{{ __('Este acceso está pensado para el usuario administrador de CyberTechna Solutions. Desde aquí podrás crear publicaciones y revisar contactos comerciales.') }}</p>
+                        <div class="auth-lockup mb-4">
+                            <img src="{{ asset('brand/cybertechna-mark.svg') }}" alt="CyberTechna Solutions" class="auth-mark">
+                            <strong class="auth-lockup-title">CyberTechna Solutions</strong>
+                        </div>
+                        <span class="eyebrow">{{ __('Acceso') }}</span>
+                        <h1 class="h2 text-white mt-3 mb-3">{{ __('Accede con tu cuenta para entrar al panel o ver el catálogo de cursos.') }}</h1>
+                        <p class="section-copy mb-4">{{ __('Los administradores pueden gestionar contenido y usuarios. Las cuentas normales acceden a su catálogo de cursos y a los enlaces de clase disponibles.') }}</p>
 
                         <form method="POST" action="{{ route('login.store') }}">
                             @csrf
@@ -29,7 +33,7 @@
                                 <label class="form-check-label" for="remember">{{ __('Mantener sesión iniciada') }}</label>
                             </div>
 
-                            <button type="submit" class="btn btn-owner w-100">{{ __('Entrar al panel') }}</button>
+                            <button type="submit" class="btn btn-owner w-100">{{ __('Entrar') }}</button>
                         </form>
                     </div>
                 </div>

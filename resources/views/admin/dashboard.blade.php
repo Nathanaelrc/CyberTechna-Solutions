@@ -13,42 +13,49 @@
             <a href="{{ route('admin.services.create') }}" class="btn btn-admin">{{ __('Nuevo servicio') }}</a>
             <a href="{{ route('admin.courses.create') }}" class="btn btn-signal-soft">{{ __('Nuevo curso') }}</a>
             <a href="{{ route('admin.posts.create') }}" class="btn btn-admin">{{ __('Nueva publicación') }}</a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-outline-light rounded-pill px-4">{{ __('Nuevo usuario') }}</a>
             <a href="{{ route('admin.messages.index') }}" class="btn btn-outline-light rounded-pill px-4">{{ __('Ver mensajes') }}</a>
         </div>
     </div>
 
     <div class="row g-4 mb-4">
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-3">
             <div class="admin-stat">
                 <span class="muted">{{ __('Publicadas') }}</span>
                 <strong>{{ $stats['published'] }}</strong>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-3">
             <div class="admin-stat">
                 <span class="muted">{{ __('Borradores') }}</span>
                 <strong>{{ $stats['drafts'] }}</strong>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-3">
             <div class="admin-stat">
                 <span class="muted">{{ __('Servicios') }}</span>
                 <strong>{{ $stats['services'] }}</strong>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-3">
             <div class="admin-stat">
                 <span class="muted">{{ __('Cursos') }}</span>
                 <strong>{{ $stats['courses'] }}</strong>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-4">
+            <div class="admin-stat">
+                <span class="muted">{{ __('Usuarios') }}</span>
+                <strong>{{ $stats['users'] }}</strong>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
             <div class="admin-stat">
                 <span class="muted">{{ __('Mensajes sin revisar') }}</span>
                 <strong>{{ $stats['unreviewedMessages'] }}</strong>
             </div>
         </div>
-        <div class="col-md-6 col-xl-2">
+        <div class="col-md-6 col-xl-4">
             <div class="admin-stat">
                 <span class="muted">{{ __('Mensajes totales') }}</span>
                 <strong>{{ $stats['totalMessages'] }}</strong>

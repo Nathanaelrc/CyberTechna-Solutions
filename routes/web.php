@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Portal\CoursePortalController;
 use App\Models\Course;
 use App\Models\Post;
 use App\Models\Service;
@@ -87,6 +89,10 @@ Route::middleware('setLocale')->group(function (): void {
 
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+        Route::prefix('mi-catalogo')->name('portal.')->group(function () {
+            Route::get('/cursos', [CoursePortalController::class, 'index'])->name('courses.index');
+            Route::get('/cursos/{course:slug}', [CoursePortalController::class, 'show'])->name('courses.show');
+        });
     });
 
     Route::prefix('panel')
@@ -98,7 +104,9 @@ Route::middleware('setLocale')->group(function (): void {
             Route::patch('/mensajes/{contactMessage}/review', [DashboardController::class, 'markMessageAsReviewed'])
                 ->name('messages.review');
             Route::resource('services', ServiceController::class)->except('show');
+            Route::patch('/courses/{course}/google-meet', [CourseController::class, 'syncGoogleMeet'])->name('courses.google-meet');
             Route::resource('courses', CourseController::class)->except('show');
             Route::resource('posts', PostController::class)->except('show');
+            Route::resource('users', UserController::class)->except('show');
         });
 });

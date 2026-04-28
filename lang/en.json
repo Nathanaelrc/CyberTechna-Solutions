@@ -259,5 +259,19 @@
   "Marcar como revisado": "Mark as reviewed",
   "No hay mensajes registrados todavía.": "There are no recorded messages yet.",
   "Mensaje marcado como revisado.": "Message marked as reviewed.",
-  "Cancelar": "Cancel"
+  "Cancelar": "Cancel",
+  "Remoto en vivo": "Live online",
+  "Híbrido": "Hybrid",
+  "Presencial": "Onsite",
+  "Formato a medida": "Custom format",
+  "Herramienta del cliente": "Client-managed tool",
+  "Próxima edición": "Next cohort",
+  "Reservar cupo": "Reserve seat",
+  "Solicitar información": "Request information",
+  "Modalidad": "Delivery mode",
+  "Duración estimada": "Estimated length",
+  "Podemos adaptar el temario, la modalidad y la herramienta de clase al nivel técnico y al objetivo del cliente.": "We can adapt the syllabus, delivery mode, and class tool to the technical level and the client's objective.",
+  "Esto incluye cohortes remotas, híbridas o presenciales, además de registro externo y operación por Google Meet cuando el programa lo requiera.": "This includes remote, hybrid, or onsite cohorts, as well as external registration and Google Meet operations when the program requires it.",
+  "Este curso puede adaptarse al nivel técnico, al área, a la intensidad y a la modalidad que necesite tu equipo.": "This course can be adapted to the technical level, area, intensity, and delivery mode your team needs.",
+  "También podemos operarlo como cohorte remota, híbrida o presencial, e integrarlo dentro de una ruta mayor de formación en ciberseguridad.": "We can also run it as a remote, hybrid, or onsite cohort and integrate it into a broader cybersecurity training path."
 }

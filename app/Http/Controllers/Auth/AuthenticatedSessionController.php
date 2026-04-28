@@ -31,17 +31,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (! $request->user()?->is_admin) {
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+        $destination = $request->user()?->is_admin
+            ? route('admin.dashboard')
+            : route('portal.courses.index');
 
-            throw ValidationException::withMessages([
-                'email' => 'Este acceso esta reservado al propietario de CyberTechna Solutions.',
-            ]);
-        }
-
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect()->intended($destination);
     }
 
     public function destroy(Request $request): RedirectResponse

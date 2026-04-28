@@ -1,0 +1,28 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="44" x2="1038" y2="618" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1827"/>
+      <stop offset="1" stop-color="#07111A"/>
+    </linearGradient>
+    <linearGradient id="line" x1="216" y1="149" x2="362" y2="355" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#77E4D8"/>
+      <stop offset="1" stop-color="#0BC1AD"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <rect x="44" y="44" width="1112" height="542" rx="28" stroke="#D9E4EF" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M172 104C172 89.641 183.641 78 198 78H378C392.359 78 404 89.641 404 104V284C404 298.359 392.359 310 378 310H198C183.641 310 172 298.359 172 284V104Z" fill="#0C1825"/>
+  <rect x="172" y="78" width="232" height="232" rx="26" stroke="#D9E4EF" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M288 118L346 140V181.2C346 223.26 322.42 260.79 288 279C253.58 260.79 230 223.26 230 181.2V140L288 118Z" fill="#0C1825" stroke="url(#line)" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M316 161C307.6 151.55 295.59 146.5 282.51 146.5C257.67 146.5 239.5 165.2 239.5 188.93C239.5 212.66 257.67 232.5 282.51 232.5C295.57 232.5 307.57 227.46 315.96 218.07" stroke="url(#line)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M274.5 161H327" stroke="#F3F7FB" stroke-width="10" stroke-linecap="round"/>
+  <path d="M300.75 161V229" stroke="#F3F7FB" stroke-width="10" stroke-linecap="round"/>
+  <path d="M486 160H1046" stroke="#0BC1AD" stroke-opacity="0.18" stroke-width="2"/>
+  <text x="470" y="214" fill="#F4F8FC" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700">CyberTechna Solutions</text>
+  <text x="470" y="280" fill="#86A3BE" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="600" letter-spacing="3">AUDITORIAS · PENTESTING · FORMACION</text>
+  <text x="470" y="366" fill="#D9E4EF" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="400">Seguridad con criterio técnico, priorización y ejecución.</text>
+  <text x="470" y="424" fill="#A8BFD4" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">Programas de auditoría, pruebas ofensivas y cursos especializados</text>
+  <text x="470" y="462" fill="#A8BFD4" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">para equipos que necesitan claridad operativa y resultados accionables.</text>
+  <path d="M470 514H834" stroke="#D9E4EF" stroke-opacity="0.14" stroke-width="2"/>
+  <text x="470" y="552" fill="#77E4D8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="3">CYBERTECHNA.LOCAL</text>
+</svg>

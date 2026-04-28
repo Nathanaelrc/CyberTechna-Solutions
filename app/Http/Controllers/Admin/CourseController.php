@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Services\GoogleMeetService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +32,12 @@ class CourseController extends Controller
             'course' => new Course([
                 'status' => 'published',
                 'sort_order' => 0,
+                'delivery_mode' => 'remote',
+                'meeting_provider' => 'none',
+                'session_timezone' => config('services.google.meet_timezone', 'UTC'),
+                'session_length_minutes' => 90,
             ]),
+            'googleMeetConfigured' => app(GoogleMeetService::class)->isConfigured(),
         ]);
     }
 
@@ -49,6 +56,7 @@ class CourseController extends Controller
     {
         return view('admin.courses.edit', [
             'course' => $course,
+            'googleMeetConfigured' => app(GoogleMeetService::class)->isConfigured(),
         ]);
     }
 
@@ -60,9 +68,38 @@ class CourseController extends Controller
             ? $course->slug
             : $this->makeUniqueSlug($payload['title'], $course->id);
 
+        if ($this->shouldResetMeetIntegration($course, $payload)) {
+            $integrations = $course->integrations ?? [];
+            unset($integrations['google_meet']);
+            $payload['integrations'] = $integrations !== [] ? $integrations : null;
+        }
+
         $course->update($payload);
 
         return redirect()->route('admin.courses.index')->with('status', 'Curso actualizado.');
+    }
+
+    public function syncGoogleMeet(Course $course, GoogleMeetService $googleMeetService): RedirectResponse
+    {
+        try {
+            $googleMeet = $googleMeetService->createMeetEventForCourse($course);
+        } catch (\Throwable $exception) {
+            return back()->withErrors([
+                'google_meet' => $exception->getMessage(),
+            ]);
+        }
+
+        $integrations = $course->integrations ?? [];
+        $integrations['google_meet'] = [
+            ...$googleMeet,
+            'synced_at' => now()->toAtomString(),
+        ];
+
+        $course->update([
+            'integrations' => $integrations,
+        ]);
+
+        return back()->with('status', 'Enlace de Google Meet generado correctamente.');
     }
 
     public function destroy(Course $course): RedirectResponse
@@ -85,6 +122,12 @@ class CourseController extends Controller
             'audience_en' => ['required', 'string', 'max:190'],
             'duration_es' => ['required', 'string', 'max:120'],
             'duration_en' => ['required', 'string', 'max:120'],
+            'delivery_mode' => ['required', Rule::in(['remote', 'hybrid', 'onsite', 'custom'])],
+            'next_session_at' => ['nullable', 'date'],
+            'session_timezone' => ['nullable', 'timezone', 'required_with:next_session_at'],
+            'session_length_minutes' => ['nullable', 'integer', 'min:30', 'max:720'],
+            'meeting_provider' => ['required', Rule::in(['none', 'google_meet', 'zoom', 'teams', 'custom'])],
+            'registration_url' => ['nullable', 'url', 'max:2048'],
             'topics_es' => ['required', 'string'],
             'topics_en' => ['required', 'string'],
             'status' => ['required', Rule::in(['draft', 'published'])],
@@ -96,6 +139,12 @@ class CourseController extends Controller
     {
         $topicsEs = $this->linesToArray($data['topics_es']);
         $topicsEn = $this->linesToArray($data['topics_en']);
+        $nextSessionAt = null;
+
+        if (! empty($data['next_session_at'])) {
+            $timezone = $data['session_timezone'] ?: config('services.google.meet_timezone', 'UTC');
+            $nextSessionAt = Carbon::parse($data['next_session_at'], $timezone)->utc();
+        }
 
         return [
             'title' => $data['title_es'],
@@ -103,6 +152,12 @@ class CourseController extends Controller
             'description' => $data['description_es'],
             'audience' => $data['audience_es'],
             'duration' => $data['duration_es'],
+            'delivery_mode' => $data['delivery_mode'],
+            'next_session_at' => $nextSessionAt,
+            'session_timezone' => $data['session_timezone'] ?? null,
+            'session_length_minutes' => $data['session_length_minutes'] ?? null,
+            'meeting_provider' => $data['meeting_provider'],
+            'registration_url' => $data['registration_url'] ?? null,
             'topics' => $topicsEs,
             'status' => $data['status'],
             'sort_order' => $data['sort_order'],
@@ -152,5 +207,24 @@ class CourseController extends Controller
         }
 
         return $slug;
+    }
+
+    private function shouldResetMeetIntegration(Course $course, array $payload): bool
+    {
+        if (! data_get($course->integrations, 'google_meet.event_id')) {
+            return false;
+        }
+
+        $currentSessionAt = $course->next_session_at?->copy()->utc()->format('Y-m-d H:i:s');
+        $nextSessionAt = $payload['next_session_at'] instanceof Carbon
+            ? $payload['next_session_at']->copy()->utc()->format('Y-m-d H:i:s')
+            : null;
+
+        return ($payload['meeting_provider'] ?? $course->meeting_provider) !== 'google_meet'
+            || $currentSessionAt !== $nextSessionAt
+            || ($course->session_timezone ?: null) !== ($payload['session_timezone'] ?? null)
+            || (int) ($course->session_length_minutes ?? 0) !== (int) ($payload['session_length_minutes'] ?? 0)
+            || $course->getRawOriginal('title') !== ($payload['title'] ?? $course->getRawOriginal('title'))
+            || $course->getRawOriginal('excerpt') !== ($payload['excerpt'] ?? $course->getRawOriginal('excerpt'));
     }
 }

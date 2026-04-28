@@ -8,23 +8,31 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('services', function (Blueprint $table): void {
-            $table->json('translations')->nullable()->after('sort_order');
-        });
+        if (! Schema::hasColumn('services', 'translations')) {
+            Schema::table('services', function (Blueprint $table): void {
+                $table->json('translations')->nullable()->after('sort_order');
+            });
+        }
 
-        Schema::table('courses', function (Blueprint $table): void {
-            $table->json('translations')->nullable()->after('sort_order');
-        });
+        if (! Schema::hasColumn('courses', 'translations')) {
+            Schema::table('courses', function (Blueprint $table): void {
+                $table->json('translations')->nullable()->after('sort_order');
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('services', function (Blueprint $table): void {
-            $table->dropColumn('translations');
-        });
+        if (Schema::hasColumn('services', 'translations')) {
+            Schema::table('services', function (Blueprint $table): void {
+                $table->dropColumn('translations');
+            });
+        }
 
-        Schema::table('courses', function (Blueprint $table): void {
-            $table->dropColumn('translations');
-        });
+        if (Schema::hasColumn('courses', 'translations')) {
+            Schema::table('courses', function (Blueprint $table): void {
+                $table->dropColumn('translations');
+            });
+        }
     }
 };

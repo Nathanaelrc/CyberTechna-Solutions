@@ -4,6 +4,7 @@
 @section('meta_description', $course->excerpt)
 
 @section('content')
+    @php($nextSession = $course->nextSessionLocal())
     <section class="section-space pb-4">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -16,12 +17,24 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="hero-card h-100">
+                        @if ($nextSession)
+                            <div class="soft-label mb-2">{{ __('Próxima edición') }}</div>
+                            <strong class="d-block text-white mb-2">{{ $nextSession->format('d/m/Y H:i') }} {{ $course->session_timezone }}</strong>
+                            <p class="form-note mb-4">{{ $course->deliveryModeLabel() }}@if ($course->meetingProviderLabel()) | {{ $course->meetingProviderLabel() }}@endif</p>
+                        @endif
+
                         <div class="soft-label mb-3">{{ __('Temas principales') }}</div>
                         <ul class="mb-0 ps-3">
                             @foreach ($course->topics ?? [] as $topic)
                                 <li class="mb-3">{{ $topic }}</li>
                             @endforeach
                         </ul>
+
+                        @if ($course->registration_url)
+                            <div class="mt-4">
+                                <a href="{{ $course->registration_url }}" class="btn btn-signal" target="_blank" rel="noreferrer">{{ __('Reservar cupo') }}</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -62,10 +75,10 @@
             <div class="owner-banner">
                 <div>
                     <div class="soft-label mb-2">{{ __('Capacitación a medida') }}</div>
-                    <strong class="d-block text-white mb-2">{{ __('Este curso puede adaptarse al nivel técnico, al área y a la intensidad que necesite tu equipo.') }}</strong>
-                    <span class="form-note">{{ __('También podemos integrarlo dentro de una ruta mayor de formación en ciberseguridad.') }}</span>
+                    <strong class="d-block text-white mb-2">{{ __('Este curso puede adaptarse al nivel técnico, al área, a la intensidad y a la modalidad que necesite tu equipo.') }}</strong>
+                    <span class="form-note">{{ __('También podemos operarlo como cohorte remota, híbrida o presencial, e integrarlo dentro de una ruta mayor de formación en ciberseguridad.') }}</span>
                 </div>
-                <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Solicitar plan formativo') }}</a>
+                <a href="{{ $course->registration_url ?: route('contact') }}" class="btn btn-signal" @if ($course->registration_url) target="_blank" rel="noreferrer" @endif>{{ $course->registration_url ? __('Reservar cupo') : __('Solicitar plan formativo') }}</a>
             </div>
         </div>
     </section>

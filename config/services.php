@@ -35,4 +35,14 @@ return [
         ],
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'refresh_token' => env('GOOGLE_REFRESH_TOKEN'),
+        'calendar_id' => env('GOOGLE_CALENDAR_ID'),
+        'meet_timezone' => env('GOOGLE_MEET_DEFAULT_TIMEZONE', 'UTC'),
+        'token_url' => env('GOOGLE_TOKEN_URL', 'https://oauth2.googleapis.com/token'),
+        'calendar_base_url' => env('GOOGLE_CALENDAR_BASE_URL', 'https://www.googleapis.com/calendar/v3'),
+    ],
+
 ];

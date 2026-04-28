@@ -7,6 +7,7 @@ use App\Models\ContactMessage;
 use App\Models\Course;
 use App\Models\Post;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -19,6 +20,7 @@ class DashboardController extends Controller
             'drafts' => Post::query()->where('status', 'draft')->count(),
             'services' => Service::query()->count(),
             'courses' => Course::query()->count(),
+            'users' => User::query()->count(),
             'unreviewedMessages' => ContactMessage::query()->whereNull('reviewed_at')->count(),
             'totalMessages' => ContactMessage::query()->count(),
         ];
