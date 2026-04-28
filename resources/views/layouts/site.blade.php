@@ -572,6 +572,30 @@
                 border-top: 1px solid var(--ct-footer-border);
             }
 
+            .footer-layout {
+                display: grid;
+                grid-template-columns: minmax(0, 1.8fr) minmax(16rem, 22rem);
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .footer-branding {
+                min-width: 0;
+            }
+
+            .footer-copy {
+                display: block;
+                max-width: 52rem;
+                line-height: 1.7;
+            }
+
+            .footer-meta {
+                display: grid;
+                gap: 0.35rem;
+                justify-items: end;
+                text-align: right;
+            }
+
             .article-body {
                 color: var(--ct-article-copy);
                 line-height: 1.85;
@@ -635,6 +659,18 @@
             }
 
             @media (max-width: 1199.98px) {
+                .navbar-collapse {
+                    margin-top: 0.9rem;
+                    padding: 1rem 1.1rem;
+                    border: 1px solid rgba(159, 189, 218, 0.12);
+                    border-radius: 1.35rem;
+                    background: var(--ct-navbar-collapse-bg);
+                }
+
+                .nav-owner-actions {
+                    margin-top: 1rem;
+                }
+
                 .metrics-grid {
                     grid-template-columns: repeat(2, minmax(0, 1fr));
                 }
@@ -647,18 +683,6 @@
             @media (max-width: 991.98px) {
                 .section-space {
                     padding: 4.25rem 0;
-                }
-
-                .navbar-collapse {
-                    margin-top: 0.9rem;
-                    padding: 1rem 1.1rem;
-                    border: 1px solid rgba(159, 189, 218, 0.12);
-                    border-radius: 1.35rem;
-                    background: var(--ct-navbar-collapse-bg);
-                }
-
-                .nav-owner-actions {
-                    margin-top: 1rem;
                 }
 
                 .hero-card,
@@ -764,6 +788,17 @@
                 .footer-shell {
                     padding-top: 1.25rem;
                 }
+
+                .footer-layout {
+                    grid-template-columns: 1fr;
+                    gap: 1.25rem;
+                    align-items: start;
+                }
+
+                .footer-meta {
+                    justify-items: start;
+                    text-align: left;
+                }
             }
 
             @media (max-width: 575.98px) {
@@ -787,7 +822,7 @@
     </head>
     <body>
         <header class="site-header">
-            <nav class="navbar navbar-expand-lg py-3">
+            <nav class="navbar navbar-expand-xl py-3">
                 <div class="container">
                     <a class="navbar-brand brand-lockup" href="{{ route('home') }}">
                         <img src="{{ asset('brand/cybertechna-mark.svg') }}" alt="CyberTechna Solutions" class="brand-mark">
@@ -857,15 +892,15 @@
         </main>
 
         <footer class="footer-shell">
-            <div class="container d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-center">
-                <div>
+            <div class="container footer-layout">
+                <div class="footer-branding">
                     <div class="footer-lockup mb-3">
                         <img src="{{ asset('brand/cybertechna-mark.svg') }}" alt="CyberTechna Solutions" class="footer-mark">
                         <strong class="footer-title">CyberTechna Solutions</strong>
                     </div>
                     <span class="footer-copy">{{ __('Auditorías, pentesting, formación y acompañamiento para equipos que no quieren improvisar su seguridad.') }}</span>
                 </div>
-                <div class="footer-copy text-lg-end">
+                <div class="footer-copy footer-meta">
                     <div>{{ __('Contacto: contacto@cybertechna.local') }}</div>
                     <div>{{ __('Desarrollado con Laravel, Bootstrap y Docker.') }}</div>
                 </div>
