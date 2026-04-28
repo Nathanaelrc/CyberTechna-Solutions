@@ -35,6 +35,9 @@ Antes de publicar en produccion, cambia al menos:
 - `DB_PASSWORD`
 - `DB_ROOT_PASSWORD`
 - `APP_DEBUG`
+- `APP_URL`
+- `FORCE_HTTPS`
+- `SESSION_SECURE_COOKIE`
 
 ## Comandos utiles
 
@@ -59,4 +62,5 @@ docker compose exec app php artisan test
 
 - El contenedor instala dependencias Composer al iniciar, genera la clave de Laravel si falta, corre migraciones y siembra el usuario propietario.
 - El proyecto usa Bootstrap por CDN, asi que no requiere Node.js para compilar assets.
-- Si vas a publicarlo detras de un dominio, ajusta `APP_URL` y las credenciales del archivo `.env`.
+- Si vas a publicarlo detras de un dominio con SSL, ajusta `APP_URL` a la URL final `https://...`, activa `FORCE_HTTPS=true` y `SESSION_SECURE_COOKIE=true` en `.env`.
+- Si el certificado termina en un proxy o balanceador delante de Laravel, deja `TRUSTED_PROXIES` configurado y asegurate de reenviar `X-Forwarded-Proto`, `X-Forwarded-Host` y `X-Forwarded-Port`.
