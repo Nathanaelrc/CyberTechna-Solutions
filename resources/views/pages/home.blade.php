@@ -204,26 +204,56 @@
 
     <section class="section-space pt-0">
         <div class="container">
+            <div class="row g-4 align-items-end mb-4">
+                <div class="col-lg-7">
+                    <div class="signal-bar"></div>
+                    <h2 class="section-heading">{{ __('Actualidad en Ciberseguridad') }}</h2>
+                </div>
+                <div class="col-lg-5">
+                    <p class="section-copy mb-0">{{ __('Mantente informado con las últimas noticias de ciberseguridad a nivel nacional e internacional.') }}</p>
+                </div>
+            </div>
+
             <div class="row g-4">
-                <div class="col-lg-8">
+                <div class="col-md-6">
                     <div class="frame-card h-100">
-                        <div class="signal-bar"></div>
-                        <h2 class="section-heading mb-3">{{ __('Seguridad con criterio, no solo con checklists.') }}</h2>
-                        <p class="section-copy mb-0">{{ __('Cada servicio combina evidencia técnica, priorización y acompañamiento para traducir la seguridad en decisiones claras, mejoras ejecutables y confianza para clientes y equipos.') }}</p>
+                        <h3 class="h4 text-white mb-4"><i class="bi bi-geo-alt me-2"></i>{{ __('Noticias Nacionales (Chile)') }}</h3>
+                        <div class="d-flex flex-column gap-3">
+                            @forelse ($cyberNews['national'] ?? [] as $news)
+                                <div class="news-item border-bottom border-secondary pb-3">
+                                    <div class="soft-label mb-1" style="font-size: 0.75rem;">{{ \Carbon\Carbon::parse($news['pubDate'])->translatedFormat('d M Y') }}</div>
+                                    <a href="{{ $news['link'] }}" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none fw-bold d-block mb-1 news-link-hover">{{ $news['title'] }}</a>
+                                </div>
+                            @empty
+                                <p class="card-copy">{{ __('No hay noticias nacionales disponibles en este momento.') }}</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="owner-banner h-100">
-                        <div>
-                            <div class="soft-label mb-2">{{ __('Contacto directo') }}</div>
-                            <strong class="d-block text-white mb-2">{{ __('Cuéntanos tu necesidad y te proponemos un alcance.') }}</strong>
-                            <span class="form-note">{{ __('Desde auditorías hasta formación interna, la ruta más directa ahora vive en la página de contacto.') }}</span>
+                <div class="col-md-6">
+                    <div class="frame-card h-100">
+                        <h3 class="h4 text-white mb-4"><i class="bi bi-globe me-2"></i>{{ __('Noticias Internacionales') }}</h3>
+                        <div class="d-flex flex-column gap-3">
+                            @forelse ($cyberNews['international'] ?? [] as $news)
+                                <div class="news-item border-bottom border-secondary pb-3">
+                                    <div class="soft-label mb-1" style="font-size: 0.75rem;">{{ \Carbon\Carbon::parse($news['pubDate'])->translatedFormat('d M Y') }}</div>
+                                    <a href="{{ $news['link'] }}" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none fw-bold d-block mb-1 news-link-hover">{{ $news['title'] }}</a>
+                                </div>
+                            @empty
+                                <p class="card-copy">{{ __('No hay noticias internacionales disponibles en este momento.') }}</p>
+                            @endforelse
                         </div>
-                        <a href="{{ route('contact') }}" class="btn btn-signal">{{ __('Ir a contacto') }}</a>
                     </div>
                 </div>
             </div>
+            
+            <style>
+                .news-link-hover:hover {
+                    color: var(--bs-primary) !important;
+                    text-decoration: underline !important;
+                }
+            </style>
         </div>
     </section>
 @endsection

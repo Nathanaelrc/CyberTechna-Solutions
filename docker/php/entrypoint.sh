@@ -46,7 +46,7 @@ if grep -q '^APP_KEY=$' .env; then
     set +a
 fi
 
-until php artisan migrate:status > /dev/null 2>&1; do
+until php artisan db:show > /dev/null 2>&1; do
     echo "Database not ready, retrying..."
     sleep 3
 done

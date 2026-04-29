@@ -9,59 +9,15 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Portal\CoursePortalController;
+use App\Http\Controllers\SitemapController;
 use App\Models\Course;
 use App\Models\Post;
 use App\Models\Service;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
- $buildSitemap = function (): Response {
-    $urls = collect([
-        ['loc' => url('/'), 'lastmod' => null],
-        ['loc' => url('/servicios'), 'lastmod' => null],
-        ['loc' => url('/metodo'), 'lastmod' => null],
-        ['loc' => url('/cursos'), 'lastmod' => null],
-        ['loc' => url('/contacto'), 'lastmod' => null],
-    ])
-        ->concat(
-            Service::query()
-                ->where('status', 'published')
-                ->orderBy('sort_order')
-                ->get()
-                ->map(fn (Service $service) => [
-                    'loc' => route('services.show', ['service' => $service->slug]),
-                    'lastmod' => $service->updated_at?->toAtomString(),
-                ])
-        )
-        ->concat(
-            Course::query()
-                ->where('status', 'published')
-                ->orderBy('sort_order')
-                ->get()
-                ->map(fn (Course $course) => [
-                    'loc' => route('courses.show', ['course' => $course->slug]),
-                    'lastmod' => $course->updated_at?->toAtomString(),
-                ])
-        )
-        ->concat(
-            Post::query()
-                ->where('status', 'published')
-                ->whereNotNull('published_at')
-                ->latest('published_at')
-                ->get()
-                ->map(fn (Post $post) => [
-                    'loc' => route('posts.show', ['post' => $post->slug]),
-                    'lastmod' => $post->updated_at?->toAtomString(),
-                ])
-        );
-
-    return response()
-        ->view('sitemap', ['urls' => $urls], 200)
-        ->header('Content-Type', 'application/xml');
- };
-
-Route::get('/sitemap.xml', $buildSitemap)->name('sitemap');
-Route::get('/sitemaps.xml', $buildSitemap);
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+Route::get('/sitemaps.xml', SitemapController::class);
 
 Route::middleware('setLocale')->group(function (): void {
     Route::get('/idioma/{locale}', function (string $locale) {
@@ -80,7 +36,9 @@ Route::middleware('setLocale')->group(function (): void {
     Route::get('/cursos/{course:slug}', [HomeController::class, 'course'])->name('courses.show');
     Route::get('/contacto', [HomeController::class, 'contact'])->name('contact');
     Route::get('/insights/{post:slug}', [HomeController::class, 'show'])->name('posts.show');
-    Route::post('/contacto', [ContactMessageController::class, 'store'])->name('contact.store');
+    Route::post('/contacto', [ContactMessageController::class, 'store'])
+        ->middleware('throttle:5,1')
+        ->name('contact.store');
 
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Post;
 use App\Models\Service;
+use App\Services\CyberNewsService;
 use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-    public function index(): View
+    public function index(CyberNewsService $newsService): View
     {
         $content = $this->siteNarrative();
+        $news = $newsService->getLatestNews(3);
 
         return view('pages.home', [
             'metrics' => $content['metrics'],
@@ -19,6 +21,7 @@ class HomeController extends Controller
             'methodSteps' => array_slice($content['methodSteps'], 0, 3),
             'coursesCatalog' => $this->publishedCourses(3),
             'latestPosts' => $this->latestPosts(),
+            'cyberNews' => $news,
         ]);
     }
 
