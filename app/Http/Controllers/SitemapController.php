@@ -12,11 +12,11 @@ class SitemapController extends Controller
     public function __invoke(): Response
     {
         $urls = collect([
-            ['loc' => url('/'), 'lastmod' => null],
-            ['loc' => url('/servicios'), 'lastmod' => null],
-            ['loc' => url('/metodo'), 'lastmod' => null],
-            ['loc' => url('/cursos'), 'lastmod' => null],
-            ['loc' => url('/contacto'), 'lastmod' => null],
+            ['loc' => $this->canonicalUrl('/'), 'lastmod' => null],
+            ['loc' => $this->canonicalUrl('/servicios'), 'lastmod' => null],
+            ['loc' => $this->canonicalUrl('/metodo'), 'lastmod' => null],
+            ['loc' => $this->canonicalUrl('/cursos'), 'lastmod' => null],
+            ['loc' => $this->canonicalUrl('/contacto'), 'lastmod' => null],
         ])
             ->concat(
                 Service::query()
@@ -24,7 +24,7 @@ class SitemapController extends Controller
                     ->orderBy('sort_order')
                     ->get()
                     ->map(fn (Service $service) => [
-                        'loc' => route('services.show', ['service' => $service->slug]),
+                        'loc' => $this->canonicalUrl(route('services.show', ['service' => $service->slug], false)),
                         'lastmod' => $service->updated_at?->toAtomString(),
                     ])
             )
@@ -34,7 +34,7 @@ class SitemapController extends Controller
                     ->orderBy('sort_order')
                     ->get()
                     ->map(fn (Course $course) => [
-                        'loc' => route('courses.show', ['course' => $course->slug]),
+                        'loc' => $this->canonicalUrl(route('courses.show', ['course' => $course->slug], false)),
                         'lastmod' => $course->updated_at?->toAtomString(),
                     ])
             )
@@ -45,7 +45,7 @@ class SitemapController extends Controller
                     ->latest('published_at')
                     ->get()
                     ->map(fn (Post $post) => [
-                        'loc' => route('posts.show', ['post' => $post->slug]),
+                        'loc' => $this->canonicalUrl(route('posts.show', ['post' => $post->slug], false)),
                         'lastmod' => $post->updated_at?->toAtomString(),
                     ])
             );
@@ -53,5 +53,13 @@ class SitemapController extends Controller
         return response()
             ->view('sitemap', ['urls' => $urls], 200)
             ->header('Content-Type', 'application/xml');
+    }
+
+    private function canonicalUrl(string $path): string
+    {
+        $root = rtrim((string) config('app.url'), '/');
+        $normalizedPath = '/'.ltrim($path, '/');
+
+        return $normalizedPath === '/' ? $root : $root.$normalizedPath;
     }
 }
