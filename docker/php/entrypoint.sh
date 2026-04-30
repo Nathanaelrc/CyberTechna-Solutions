@@ -52,7 +52,6 @@ until php artisan db:show > /dev/null 2>&1; do
 done
 
 php artisan migrate --force
-php artisan db:seed --force
-php artisan translations:warm --locale=en || true
+php artisan app:bootstrap --locale=en || true
 
 exec "$@"
