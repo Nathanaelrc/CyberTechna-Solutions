@@ -53,5 +53,6 @@ done
 
 php artisan migrate --force
 php artisan db:seed --force
+php artisan translations:warm --locale=en || true
 
 exec "$@"

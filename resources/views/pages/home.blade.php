@@ -208,6 +208,7 @@
                 <div class="col-lg-7">
                     <div class="signal-bar"></div>
                     <h2 class="section-heading">{{ __('Actualidad en Ciberseguridad') }}</h2>
+                    <p class="text-white">{{ __('Novedades recientes del sector para ti.') }}</p>
                 </div>
                 <div class="col-lg-5">
                     <p class="section-copy mb-0">{{ __('Mantente informado con las últimas noticias de ciberseguridad a nivel nacional e internacional.') }}</p>
