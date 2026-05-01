@@ -589,6 +589,18 @@
                 line-height: 1.7;
             }
 
+            .footer-contact-link {
+                color: var(--ct-heading);
+                font-weight: 700;
+                text-decoration: none;
+                border-bottom: 1px dashed rgba(142, 164, 188, 0.85);
+            }
+
+            .footer-contact-link:hover {
+                color: var(--ct-link-hover);
+                border-bottom-color: rgba(11, 193, 173, 0.62);
+            }
+
             .footer-meta {
                 display: grid;
                 gap: 0.35rem;
@@ -646,6 +658,11 @@
                 --bs-navbar-brand-hover-color: var(--ct-heading);
                 --bs-navbar-toggler-border-color: rgba(37, 64, 97, 0.16);
                 --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2816,36,58,0.82%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            }
+
+            html[data-theme='dark'] .navbar {
+                --bs-navbar-toggler-border-color: rgba(219, 231, 245, 0.32);
+                --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.94%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
             }
 
             @media (min-width: 1600px) {
@@ -901,7 +918,11 @@
                     <span class="footer-copy">{{ __('Auditorías, pentesting, formación y acompañamiento para equipos que no quieren improvisar su seguridad.') }}</span>
                 </div>
                 <div class="footer-copy footer-meta">
-                    <div>{{ __('Contacto: contacto@cybertechna.local') }}</div>
+                    @php($publicContactEmail = config('app.contact_email') ?: 'contacto@cybertechnasolutions.com')
+                    <div>
+                        {{ __('Contacto') }}:
+                        <a href="mailto:{{ $publicContactEmail }}" class="footer-contact-link">{{ $publicContactEmail }}</a>
+                    </div>
                     <div>{{ __('Desarrollado con Laravel, Bootstrap y Docker.') }}</div>
                 </div>
             </div>

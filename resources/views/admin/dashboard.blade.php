@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="row g-4 mb-4">
+    <div class="row g-4 g-xl-5 mb-4">
         <div class="col-md-6 col-xl-3">
             <div class="admin-stat">
                 <span class="muted">{{ __('Publicadas') }}</span>

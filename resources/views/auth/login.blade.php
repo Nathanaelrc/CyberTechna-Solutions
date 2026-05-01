@@ -35,6 +35,8 @@
 
                             <button type="submit" class="btn btn-owner w-100">{{ __('Entrar') }}</button>
                         </form>
+
+                        <a href="{{ route('password.request') }}" class="btn btn-ghost w-100 mt-3">{{ __('Olvidé mi contraseña') }}</a>
                     </div>
                 </div>
             </div>

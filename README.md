@@ -6,6 +6,8 @@ Sitio corporativo desarrollado con Laravel 13, Bootstrap 5 y Docker para ofrecer
 
 - Landing page para CyberTechna Solutions con servicios de auditoria, pentesting, formacion y acompanamiento continuo.
 - Login reservado al propietario y dashboard privado.
+- Recuperacion de contraseña desde login via enlace por correo.
+- Cambio de contraseña del administrador desde el panel (`Mi contraseña`).
 - CRUD de publicaciones para compartir novedades, articulos o casos.
 - Bandeja de mensajes recibidos desde el formulario de contacto.
 - Metadatos operativos para cursos: modalidad, proxima edicion, registro e integracion con herramientas externas.
@@ -28,8 +30,34 @@ Sitio corporativo desarrollado con Laravel 13, Bootstrap 5 y Docker para ofrecer
 
 Se generan con los valores del archivo `.env`:
 
-- Email: `owner@cybertechna.local`
+- Email: `m.rodriguez@cybertechnasolutions.com`
 - Password: `ChangeMe2026`
+
+## Correo y contacto (Google Workspace)
+
+- Contacto publico del sitio: `contacto@cybertechnasolutions.com`
+- Usuario admin para login privado: `m.rodriguez@cybertechnasolutions.com`
+
+Variables recomendadas en `.env` para Google Workspace SMTP:
+
+```env
+MAIL_MAILER=smtp
+MAIL_SCHEME=tls
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=contacto@cybertechnasolutions.com
+MAIL_PASSWORD=TU_APP_PASSWORD_O_PASSWORD_DE_SMTP
+MAIL_EHLO_DOMAIN=cybertechnasolutions.com
+MAIL_FROM_ADDRESS=contacto@cybertechnasolutions.com
+MAIL_FROM_NAME="CyberTechna Solutions"
+MAIL_REPLY_TO_ADDRESS=contacto@cybertechnasolutions.com
+MAIL_REPLY_TO_NAME="CyberTechna Solutions"
+CONTACT_EMAIL=contacto@cybertechnasolutions.com
+
+ADMIN_EMAIL=m.rodriguez@cybertechnasolutions.com
+```
+
+Si usas verificacion en dos pasos en la cuenta de Workspace/Gmail, utiliza una App Password para `MAIL_PASSWORD`.
 
 Antes de publicar en produccion, cambia al menos:
 

@@ -56,6 +56,8 @@ return [
 
     'force_https' => env('FORCE_HTTPS', false),
 
+    'contact_email' => env('CONTACT_EMAIL', env('MAIL_FROM_ADDRESS', 'contacto@cybertechnasolutions.com')),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

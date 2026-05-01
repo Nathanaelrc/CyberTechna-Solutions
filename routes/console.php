@@ -57,7 +57,7 @@ $seedSignature = function () use ($fileSignature): string {
     return sha1(json_encode([
         'seeders' => $fileSignature([database_path('seeders')]),
         'admin' => [
-            'email' => env('ADMIN_EMAIL', 'admin@cybertechna.local'),
+            'email' => env('ADMIN_EMAIL', 'm.rodriguez@cybertechnasolutions.com'),
             'name' => env('ADMIN_NAME', 'CyberTechna Owner'),
             'password' => env('ADMIN_PASSWORD', 'change-me-please'),
         ],

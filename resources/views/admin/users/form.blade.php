@@ -9,11 +9,13 @@
         <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" maxlength="255" required>
     </div>
 
+    @if(!$user->exists || !$user->is(auth()->user()))
     <div class="col-md-6">
         <label for="password" class="form-label">{{ $user->exists ? 'Nueva contraseña' : 'Contraseña' }}</label>
         <input type="password" class="form-control" id="password" name="password" minlength="8" {{ $user->exists ? '' : 'required' }}>
         <div class="form-text">{{ $user->exists ? 'Déjalo vacío para conservar la contraseña actual.' : 'Usa al menos 8 caracteres.' }}</div>
     </div>
+    @endif
 
     <div class="col-md-6 d-flex align-items-end">
         <div class="form-check form-switch">

@@ -80,7 +80,7 @@
                     <h2 class="section-heading">{{ __('Cuatro formas claras de trabajar con nosotros.') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('La home concentra lo relevante. El detalle técnico y comercial ahora vive en páginas dedicadas para que cada servicio pueda explicarse con más profundidad.') }}</p>
+                    <p class="section-copy mb-0">{{ __('Auditamos, probamos y capacitamos con foco en lo que realmente expone al negocio. Cuatro líneas diseñadas para entender el riesgo, validarlo con evidencia y ayudar a corregirlo.') }}</p>
                 </div>
             </div>
 
@@ -123,7 +123,7 @@
                                 <div class="frame-card h-100">
                                     <div class="soft-label mb-2">{{ __('Auditoría') }} {{ $loop->iteration }}</div>
                                     <h3 class="h5 text-white">{{ $detail }}</h3>
-                                    <p class="card-copy mb-0">{{ __('En la página de detalle se explica alcance, entregables y cómo se traduce a un plan de acción priorizado.') }}</p>
+                                    <p class="card-copy mb-0">{{ __('Cada variante genera hallazgos con criticidad, evidencia técnica y un plan de remediación alineado al contexto del cliente.') }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -141,7 +141,7 @@
                     <h2 class="section-heading">{{ __('Cursos que van desde lo introductorio hasta lo ofensivo.') }}</h2>
                 </div>
                 <div class="col-lg-5">
-                    <p class="section-copy mb-0">{{ __('Abrimos una página exclusiva para cursos para explicar temarios, audiencias y profundidad. Estos son algunos de los programas base.') }}</p>
+                    <p class="section-copy mb-0">{{ __('Formamos desde usuarios sin experiencia técnica hasta equipos ofensivos. Cada programa se adapta al nivel del participante y al objetivo del equipo.') }}</p>
                 </div>
             </div>
 

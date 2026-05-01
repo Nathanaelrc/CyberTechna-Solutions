@@ -105,15 +105,15 @@
             }
 
             .admin-stat {
-                padding: 1.4rem;
+                padding: 1.75rem 2rem;
                 height: 100%;
             }
 
             .admin-stat strong {
                 display: block;
-                font-size: 2rem;
+                font-size: 2.1rem;
                 color: #fff;
-                margin-top: 0.4rem;
+                margin-top: 0.5rem;
             }
 
             .muted {
@@ -129,11 +129,20 @@
 
             .admin-link {
                 color: rgba(217, 228, 239, 0.8);
+                font-size: 0.875rem;
+                padding: 0.4rem 0.65rem;
             }
 
             .admin-link.active,
             .admin-link:hover {
                 color: #fff;
+            }
+
+            .admin-nav-sep {
+                width: 1px;
+                height: 1.25rem;
+                background: rgba(160, 186, 213, 0.2);
+                align-self: center;
             }
 
             .btn-admin {
@@ -189,10 +198,35 @@
                 --bs-pagination-active-border-color: var(--admin-accent);
                 --bs-pagination-active-color: #04111a;
             }
+
+            .admin-form-shell {
+                max-width: 54rem;
+            }
+
+            .admin-form-note {
+                color: var(--admin-muted);
+                line-height: 1.7;
+                margin: 0;
+            }
+
+            .form-text {
+                color: var(--admin-muted);
+            }
+
+            .form-check-label,
+            .form-check .form-text {
+                color: var(--admin-copy);
+            }
+
+            .admin-form-divider {
+                border: 0;
+                border-top: 1px solid rgba(160, 186, 213, 0.16);
+                margin: 1.35rem 0 1.45rem;
+            }
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark admin-nav py-3">
+        <nav class="navbar navbar-expand-xl navbar-dark admin-nav py-3">
             <div class="container">
                 <a class="navbar-brand admin-brand" href="{{ route('admin.dashboard') }}">
                     <img src="{{ asset('brand/cybertechna-mark.svg') }}" alt="CyberTechna Solutions" class="admin-brand-mark">
@@ -207,14 +241,16 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="adminNav">
-                    <ul class="navbar-nav ms-auto mb-3 mb-lg-0 gap-lg-2 align-items-lg-center">
+                    <ul class="navbar-nav ms-auto mb-3 mb-xl-0 gap-xl-1 align-items-xl-center">
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}" href="{{ route('admin.services.index') }}">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.courses.*') ? 'active' : '' }}" href="{{ route('admin.courses.index') }}">Cursos</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">Publicaciones</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link admin-link {{ request()->routeIs('admin.messages.*') ? 'active' : '' }}" href="{{ route('admin.messages.index') }}">Mensajes</a></li>
-                        <li class="nav-item"><a class="nav-link admin-link" href="{{ route('home') }}" target="_blank" rel="noreferrer">Ver sitio</a></li>
+                        <li class="d-none d-xl-block admin-nav-sep" aria-hidden="true"></li>
+                        <li class="nav-item"><a class="nav-link admin-link" href="{{ route('admin.users.edit', auth()->user()) }}" title="Mi perfil">Mi perfil</a></li>
+                        <li class="nav-item"><a class="nav-link admin-link" href="{{ route('home') }}" target="_blank" rel="noreferrer">Ver sitio ↗</a></li>
                     </ul>
 
                     <form method="POST" action="{{ route('logout') }}" class="ms-lg-3">

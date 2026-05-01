@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::query()->updateOrCreate([
-            'email' => env('ADMIN_EMAIL', 'admin@cybertechna.local'),
+            'email' => env('ADMIN_EMAIL', 'm.rodriguez@cybertechnasolutions.com'),
         ], [
             'name' => env('ADMIN_NAME', 'CyberTechna Owner'),
             'password' => env('ADMIN_PASSWORD', 'change-me-please'),

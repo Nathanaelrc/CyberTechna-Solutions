@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PasswordController as AdminPasswordController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Portal\CoursePortalController;
@@ -43,6 +46,17 @@ Route::middleware('setLocale')->group(function (): void {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
         Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+
+        Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+            ->name('password.request');
+        Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+            ->middleware('throttle:5,1')
+            ->name('password.email');
+
+        Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+            ->name('password.reset');
+        Route::post('/reset-password', [NewPasswordController::class, 'store'])
+            ->name('password.store');
     });
 
     Route::middleware('auth')->group(function () {
@@ -61,6 +75,8 @@ Route::middleware('setLocale')->group(function (): void {
             Route::get('/mensajes', [DashboardController::class, 'messages'])->name('messages.index');
             Route::patch('/mensajes/{contactMessage}/review', [DashboardController::class, 'markMessageAsReviewed'])
                 ->name('messages.review');
+            Route::get('/mi-password', [AdminPasswordController::class, 'edit'])->name('password.edit');
+            Route::put('/mi-password', [AdminPasswordController::class, 'update'])->name('password.update');
             Route::resource('services', ServiceController::class)->except('show');
             Route::patch('/courses/{course}/google-meet', [CourseController::class, 'syncGoogleMeet'])->name('courses.google-meet');
             Route::resource('courses', CourseController::class)->except('show');

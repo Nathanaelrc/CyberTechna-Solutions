@@ -42,7 +42,7 @@
                             <td>{{ optional($user->created_at)->format('d/m/Y H:i') }}</td>
                             <td>
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Editar</a>
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-outline-light rounded-pill px-3">Editar / contraseña</a>
                                     <form method="POST" action="{{ route('admin.users.destroy', $user) }}" onsubmit="return confirm('Se eliminará este usuario. ¿Continuar?');">
                                         @csrf
                                         @method('DELETE')
